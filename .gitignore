@@ -1,0 +1,10 @@
+dados/
+.env
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store
+criar_ambiente_log.txt
+.env*
+docs/*.parquet
+publicar_github_log.txt
