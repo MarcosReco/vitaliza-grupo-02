@@ -2,3 +2,9 @@
 
 | Data | Arquivo | Problema | Decisão | Critério | Linhas afetadas | Quem |
 |------|---------|----------|---------|----------|-----------------|------|
+| 07/11/2026 | assinaturas.csv | 60 assinaturas de cortesia (`plano_atual = cortesia`, `canal_cobranca = interno`), todas ativas e sem nenhum evento: não pagam | Remover | `plano_atual == "cortesia"`. Sem elas, os ativos caem de 14.813 para 14.753, o número do enunciado | 60 removidas (32.643 → 32.583) | Rogerio |
+| 07/11/2026 | eventos_assinatura.csv | Horários em dois fusos: lojas em UTC (terminados em "Z"), site em horário de Brasília | Corrigir: nova coluna `data_hora_brt` com tudo em Brasília (`America/Sao_Paulo`); `data_hora` original e `origem_fuso` mantidas para rastreio | Termina em "Z" → converter de UTC; senão → já é BRT. Horário de verão: abolido em 2019, não afeta dados de 2024–2026 | 186.323 convertidas; 89.242 mantidas | Rogerio |
+| 07/11/2026 | eventos_assinatura.csv | 44 eventos pareciam posteriores ao corte (`2026-10-01T…Z`), mas em Brasília são de 30/09/2026 | Manter (consequência da conversão acima) | `data_hora_brt` < 01/10/2026 00:00 | 44 mantidas | Rogerio |
+| 07/11/2026 | assinaturas.csv | `inicio` e `data_fim` só têm data, sem hora nem fuso | Manter sem conversão | Conferido contra `assinatura_expirada`: as 17.830 datas de fim batem com o dia em Brasília (1.406 não bateriam com o dia em UTC) | 0 | Rogerio |
+| 07/11/2026 | assinaturas.csv | `data_fim` em branco | Manter a linha com a data vazia | Branco = assinatura ainda ativa; apagar essas linhas apagaria todos os ativos | 14.753 mantidas | Rogerio |
+| 07/11/2026 | eventos_assinatura.csv | `plano` em branco em 6.734 eventos `renovacao_automatica_desligada` (além dos eventos de teste, que não têm plano) | Marcar para investigar; não preencher | O plano pode ser recuperado do `assinaturas.csv` se a análise precisar | 0 (só registro) | Rogerio |
