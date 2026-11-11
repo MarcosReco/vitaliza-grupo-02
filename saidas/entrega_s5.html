@@ -72,6 +72,13 @@ nav li.has-sub > a{font-weight:600}
 nav .tag{font-size:10.5px;background:#efece6;color:var(--mute);padding:1px 7px;border-radius:99px;margin-left:auto}
 nav .foot{margin-top:24px;font-size:12.5px;color:var(--mute);line-height:1.5}
 footer{padding:36px 0 0;font-size:13px;color:var(--mute)}
+.links{display:grid;gap:10px;margin-top:6px}
+.lk{display:block;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;padding:12px 16px;text-decoration:none;color:var(--ink);transition:border-color .15s}
+.lk:hover{border-color:var(--red)}
+.lk b{display:block;color:var(--red);font-size:15px}
+.lk b:after{content:" ↗"}
+.lk span{font-size:14px;color:var(--mute)}
+pre.cmd{background:#1d1d1f;color:#f7f6f2;border-radius:10px;padding:14px 18px;font-size:14px;overflow-x:auto;margin:6px 0 12px}
 /* trilhas */
 .parte{background:var(--red);color:#fff;border-radius:14px;padding:28px 30px;margin:44px 0 0;scroll-margin-top:24px}
 .parte.neg{background:var(--blue)}
@@ -304,6 +311,18 @@ nav .blk.n li a.on{border-color:var(--blue);color:var(--blue)}
     <tr><td>Total de eventos (nenhum removido)</td><td class="n">275.565</td><td class="n">275.565</td></tr>
   </table></div>
   <p style="margin-top:14px;font-size:15px">O arquivo de eventos mantém a data original e acrescenta <code>origem_fuso</code> e <code>data_hora_brt</code>, para que qualquer conversão possa ser auditada.</p>
+
+  <h3>Onde abrir no GitHub</h3>
+  <div class="links">
+    <a class="lk" href="https://github.com/MarcosReco/vitaliza-grupo-02/blob/main/src/normaliza_datas.py" target="_blank" rel="noopener"><b>src/normaliza_datas.py</b><span>O script da limpeza: lê os brutos, aplica cada decisão e grava os processados</span></a>
+    <a class="lk" href="https://github.com/MarcosReco/vitaliza-grupo-02/blob/main/decisoes.md" target="_blank" rel="noopener"><b>decisoes.md</b><span>Cada decisão de limpeza, com critério e número de linhas afetadas</span></a>
+    <a class="lk" href="https://github.com/MarcosReco/vitaliza-grupo-02/blob/main/docs/01_Limpeza%20de%20Base.md" target="_blank" rel="noopener"><b>docs/01_Limpeza de Base.md</b><span>O registro completo do processo, etapa por etapa</span></a>
+  </div>
+
+  <h3>Os arquivos processados</h3>
+  <p>Os dois arquivos resultantes, <code>dados/processados/assinaturas.csv</code> e <code>dados/processados/eventos_assinatura.csv</code>, <b>não ficam no GitHub</b>: por regra do curso, a pasta <code>dados/</code> fica fora do repositório. Eles são gerados a partir dos brutos, na pasta do projeto, com um comando:</p>
+  <pre class="cmd">.venv\Scripts\python src\normaliza_datas.py</pre>
+  <p style="font-size:15px">O script imprime as contagens da tabela acima a cada execução, o que permite conferir que o resultado é o mesmo em qualquer máquina.</p>
 </section>
 
 <!-- 6 -->
