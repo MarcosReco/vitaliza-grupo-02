@@ -42,7 +42,17 @@ trimestre e não aparecem em nenhuma das duas fotos.
 | Treinos do Garmin em UTC | Pico às 9h e 5.828 treinos antes das 5h; app e Apple Health com pico às 6h | −3h nos 207.954 treinos do Garmin |
 | Tipos em inglês desde 15/04/2026 | `run`, `walk`, `ride`, `strength` ao lado dos nomes em português | Traduzir (376.930 treinos) |
 | Duração 0 ou acima de 4h | 3.649 e 1.597 treinos | Manter e registrar |
-| `sexo` em texto livre | Sete grafias para dois valores | Fora desta análise |
+| `sexo` em texto livre e 606 nascimentos impossíveis | Sete grafias; datas 1900-01-01 e 2031-05-12 | Tratados na limpeza (`usuarios.csv` processado) |
+
+**Resumo pelas cinco dimensões de qualidade vistas em aula:**
+
+| Dimensão | O que conferimos | Resultado |
+| :-- | :-- | :-- |
+| Completude | Vazios nas colunas usadas | 3.298 sem nascimento e 3.140 sem sexo, mantidos; distância vazia em 46% dos treinos (sem GPS, esperado) |
+| Validade | Valores possíveis | 606 nascimentos impossíveis → faltante; 3.649 treinos com duração 0 e 1.597 acima de 4h, registrados |
+| Consistência | A mesma informação bate entre arquivos | `uso_mensal` ignora treinos de relógio; tipos em dois idiomas; `data_fim` bate 100% com a expiração no log |
+| Unicidade | Chaves sem repetição | `user_id`, `atividade_id` e usuário+mês sem repetição; uma linha por assinante no final |
+| Temporalidade | Período e fuso de cada data | Lojas e Garmin em UTC → Brasília; nenhuma variável usa dado posterior a 30/06 |
 
 ## Passo 3 · Uma linha por assinante
 
@@ -77,13 +87,25 @@ assinantes parados. Por isso, comparamos por mediana e quartis.
   anunciada, não um motivo: 94% dos anuais e 99% dos mensais que a desligaram saíram.
 - Entre as variáveis de comportamento, a que mais separa é **dias sem treino** (0,15). Até 7 dias
   parado, a saída fica em 12–14%; a partir de 8 dias, dobra; entre 15 e 60 dias, passa de 30%.
-- Canal de aquisição, relógio e chamados ao suporte quase não separam.
+- **Seis dias não é o limiar.** A mediana de quem saiu é 6 dias sem treino, mas isso descreve o
+  grupo, não marca o risco. Dia a dia, de 0 a 7 dias a saída fica entre 11% e 15%, abaixo da média
+  (16,7%); no 8º dia ela salta para 22%. **O limiar que os dados mostram é 8 dias.** E 40% de
+  quem saiu tinha treinado nos últimos 3 dias: para esses, o uso não avisa.
+- Canal de aquisição, relógio, chamados ao suporte e idade quase não separam. A idade varia de
+  14,8% a 18,2% entre faixas e, como se discutiu na trilha de negócios, descreve o assinante mas
+  não é gatilho de ação.
 
 ## Passo 6 · Terceira variável: o plano
 
 À primeira vista, o anual sai menos: 10,9% contra 24,7%. Mas o anual **só pode sair na
 renovação**. Entre os anuais que renovavam entre 01/07 e 30/09, **46% saíram**. A taxa baixa
 vinha de três quartos deles não renovarem no trimestre.
+
+**Tempo de casa.** Na correlação geral ele quase não aparece (−0,04), porque mistura os planos.
+Aberto por plano, só entre quem podia sair: no mensal, a saída cai de 33% (até 2 meses de casa)
+para 10% (mais de 2 anos); no anual, a primeira renovação é a mais crítica (52%, contra 33%
+depois de 2 anos). **Limite:** a base de 30/06 não inclui quem assinou e saiu dentro do trimestre
+(171 pessoas), então a saída dos primeiros meses está, se algo, subestimada.
 
 Comparando só quem podia sair, a relação entre dias sem treino e saída se mantém nos dois
 planos, e no anual é ainda mais forte: 16% de saída para quem treinou nos últimos 3 dias e mais

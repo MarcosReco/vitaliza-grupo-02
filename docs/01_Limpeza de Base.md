@@ -132,6 +132,17 @@ Os dois arquivos foram inspecionados em modo só leitura.
 6. **`plano` vazio em 6.734 eventos `renovacao_automatica_desligada`.** Registrado, não
    preenchido.
 
+**Cadastro (`usuarios.csv`), incluído em 11/11** depois de revisarmos as aulas: a segmentação vai
+usar a idade, e a aula de 29/10 mostrou que o cadastro tem datas de nascimento impossíveis.
+
+7. **606 datas de nascimento impossíveis:** 412 em 1900-01-01 e 194 em 2031-05-12, ou seja, datas
+   padrão do sistema para campo não preenchido. Viram faltante.
+8. **`sexo` com sete grafias** (F, Fem, feminino, M, Masc, masculino) para dois valores.
+   Padronizado em F/M.
+9. **Campos vazios:** 3.298 contas sem nascimento e 3.140 sem sexo. Diferente da base master da
+   aula, **mantivemos essas contas**: idade e sexo descrevem o assinante, mas não decidem a saída,
+   e removê-las tiraria pagantes reais da contagem.
+
 ---
 
 ## Etapa 5 · Execução da limpeza
@@ -157,9 +168,14 @@ para `dados/processados/`; a lógica fica num script que qualquer integrante pod
 | `eventos`: após o corte | 44 (texto UTC) | **0** (Brasília) |
 | `eventos`: intervalo | — | 01/07/2024 06:11 a 30/09/2026 22:59 |
 | `eventos`: total de linhas | 275.565 | 275.565 (nenhuma removida) |
+| `usuarios`: remover contas de teste | 64.948 | 64.888 (−60) |
+| `usuarios`: nascimento impossível → faltante | 606 | coluna `idade` vazia + `nascimento_invalido` |
+| `usuarios`: sexo padronizado | 7 grafias | F/M (24.803 regrafadas) |
 
 **Saídas** (fora do Git, como todo o `dados/`):
 - `dados/processados/assinaturas.csv`
+- `dados/processados/usuarios.csv`: acrescenta `idade` (anos completos em 30/09/2026),
+  `faixa_etaria`, `nascimento_invalido` e `sexo_original`.
 - `dados/processados/eventos_assinatura.csv`: mantém a `data_hora` original e acrescenta
   `origem_fuso` (UTC ou BRT) e `data_hora_brt`, para que qualquer conversão possa ser auditada.
 
@@ -167,6 +183,7 @@ para `dados/processados/`; a lógica fica num script que qualquer integrante pod
 
 ## Próximos passos
 
-- Decidir o tratamento de `reembolso`, `chargeback` e `periodo_carencia` na contagem de ativos.
+- ~~Decidir o tratamento de `reembolso`, `chargeback` e `periodo_carencia`.~~ Resolvido na análise
+  exploratória: só `assinatura_expirada` encerra a assinatura (ver `02_Analise Exploratoria.md`).
 - Reconstruir a situação de cada assinante mês a mês e reproduzir o churn do enunciado (5,6% em
   2025, 6,6% em jan–set/2026, 8,1% em abril/2026).

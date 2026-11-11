@@ -9,7 +9,11 @@ O que faz:
        - eventos do site já estão em Brasília -> mantidos;
        - assinaturas.csv tem só datas (sem hora), já no dia de Brasília -> mantidas.
      Datas em branco ficam em branco (a linha é mantida).
-  4. Grava o resultado em dados/processados/ e imprime as contagens de cada passo.
+  4. usuarios.csv: remove as mesmas 60 contas de teste (e-mail @vitaliza.com.br), calcula a
+     idade em anos completos em 30/09/2026 e trata como faltante a data de nascimento
+     impossível (datas padrão do sistema, 1900-01-01 e 2031-05-12); padroniza o sexo
+     (sete grafias -> F/M). Nenhuma conta real é removida por ter campo vazio.
+  5. Grava o resultado em dados/processados/ e imprime as contagens de cada passo.
 
 Rodar na pasta do projeto:  .venv\\Scripts\\python src\\normaliza_datas.py
 """
@@ -69,10 +73,43 @@ def limpa_eventos() -> pd.DataFrame:
     return df
 
 
+DATA_IDADE = pd.Timestamp("2026-09-30")
+SEXO = {"F": "F", "Fem": "F", "feminino": "F", "M": "M", "Masc": "M", "masculino": "M"}
+
+
+def limpa_usuarios() -> pd.DataFrame:
+    df = pd.read_csv(BRUTOS / "usuarios.csv", dtype=str, keep_default_na=False)
+    print(f"[usuarios] linhas lidas: {len(df):,}")
+
+    teste = df["email"].str.endswith("@vitaliza.com.br")
+    print(f"[usuarios] contas de teste removidas: {teste.sum():,}")
+    df = df.loc[~teste].copy()
+
+    nasc = pd.to_datetime(df["data_nascimento"].replace("", pd.NA), format="%Y-%m-%d")
+    idade = (DATA_IDADE.year - nasc.dt.year
+             - ((nasc.dt.month > DATA_IDADE.month)
+                | ((nasc.dt.month == DATA_IDADE.month) & (nasc.dt.day > DATA_IDADE.day))).astype("Int64"))
+    invalida = nasc.notna() & ~idade.between(10, 100)
+    print(f"[usuarios] nascimento em branco: {nasc.isna().sum():,} | impossível (idade fora de 10–100): {invalida.sum():,}")
+    print(f"[usuarios]   datas impossíveis mais comuns: {df.loc[invalida, 'data_nascimento'].value_counts().head(3).to_dict()}")
+    df["nascimento_invalido"] = invalida
+    df["idade"] = idade.where(~invalida)
+    df["faixa_etaria"] = pd.cut(df["idade"], [9, 24, 34, 44, 54, 64, 100],
+                                labels=["até 24", "25–34", "35–44", "45–54", "55–64", "65+"]).astype(str).replace("nan", "")
+
+    df["sexo_original"] = df["sexo"]
+    df["sexo"] = df["sexo"].map(SEXO).fillna("")
+    print(f"[usuarios] sexo padronizado: {df['sexo'].value_counts().to_dict()}")
+    print(f"[usuarios] linhas gravadas: {len(df):,}")
+    return df
+
+
 def main() -> None:
     PROCESSADOS.mkdir(parents=True, exist_ok=True)
     assinaturas = limpa_assinaturas()
     eventos = limpa_eventos()
+    usuarios = limpa_usuarios()
+    usuarios.to_csv(PROCESSADOS / "usuarios.csv", index=False)
 
     sem_assinatura = ~eventos["user_id"].isin(assinaturas["user_id"])
     print(f"[checagem] eventos de contas sem assinatura (só teste grátis): {sem_assinatura.sum():,}")
