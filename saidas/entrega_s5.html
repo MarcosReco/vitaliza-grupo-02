@@ -280,6 +280,15 @@ footer{padding:36px 0 0;font-size:13px;color:var(--mute)}
 <script>
 const links=[...document.querySelectorAll('nav a')];
 const byId=Object.fromEntries(links.map(a=>[a.getAttribute('href').slice(1),a]));
+// Rola por JavaScript em vez de depender da âncora: funciona também quando a página
+// é aberta como data: URL ou dentro de visualizadores que bloqueiam navegação por "#".
+links.forEach(a=>a.addEventListener('click',ev=>{
+  const alvo=document.getElementById(a.getAttribute('href').slice(1));
+  if(!alvo)return;
+  ev.preventDefault();
+  alvo.scrollIntoView({behavior:'smooth',block:'start'});
+  try{history.replaceState(null,'','#'+alvo.id)}catch(e){}
+}));
 const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.remove('on'));const a=byId[e.target.id];if(a){a.classList.add('on');a.scrollIntoView({block:'nearest',inline:'nearest'})}}})},{rootMargin:'-30% 0px -65% 0px'});
 document.querySelectorAll('main section').forEach(s=>obs.observe(s));
 </script>
