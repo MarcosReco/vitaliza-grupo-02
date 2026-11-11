@@ -39,10 +39,6 @@ blockquote{margin:20px 0;padding:18px 22px;background:var(--card);border-left:4p
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
 .card h4{margin:0 0 8px;font-size:15px}
 .card p{font-size:15px;margin:0}
-.card.q{margin-top:16px;border-left:4px solid var(--red)}
-.card.q h4{font-family:Fraunces,Georgia,serif;font-size:19px;font-weight:600;margin:4px 0 10px;line-height:1.3}
-.card.q p{line-height:1.7}
-.why a{color:var(--red);font-weight:600}
 .lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:6px}
 .lbl.bad{color:var(--red)}.lbl.good{color:var(--ok)}
 .tbl{overflow-x:auto;margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
@@ -103,7 +99,6 @@ footer{padding:36px 0 0;font-size:13px;color:var(--mute)}
     <li class="todo"><a href="#exploratoria"><i>6</i>Análise exploratória<span class="tag">a fazer</span></a></li>
     <li class="todo"><a href="#segmentacao"><i>7</i>Segmentação<span class="tag">a fazer</span></a></li>
     <li><a href="#decisoes"><i>8</i>Registro de decisões</a></li>
-    <li><a href="#orientacao"><i>9</i>Onde queremos orientação</a></li>
   </ol>
   <div class="foot">Repositório <code>vitaliza-grupo-02</code><br>Data de corte: 30/09/2026</div>
 </nav>
@@ -127,7 +122,7 @@ footer{padding:36px 0 0;font-size:13px;color:var(--mute)}
     <span><b>Escopo:</b> até a segmentação</span>
     <span><b>Método:</b> CRISP-DM</span>
   </div>
-  <div class="why"><b>O que buscamos com esta entrega.</b> Mais do que resultados, ela expõe os critérios e as decisões do grupo em cada etapa, para receber orientação sobre a abordagem antes da entrega final (18/12). As dúvidas em que mais precisamos de retorno estão na <a href="#orientacao" class="ir">seção 9</a>.</div>
+  <div class="why"><b>O que buscamos com esta entrega.</b> Mais do que resultados, ela expõe os critérios e as decisões do grupo em cada etapa, para receber orientação sobre a abordagem antes da entrega final (18/12).</div>
 </section>
 
 <!-- 1 -->
@@ -281,38 +276,6 @@ footer{padding:36px 0 0;font-size:13px;color:var(--mute)}
     <tr><td><code>assinaturas</code></td><td>Manter <code>data_fim</code> em branco</td><td>Branco = assinatura ativa</td><td>Apagar as linhas (apagaria todos os ativos) ou preencher com a data do corte (criaria saídas falsas)</td><td class="n">14.753</td></tr>
     <tr><td><code>eventos</code></td><td>Marcar <code>plano</code> vazio para investigar</td><td>Recuperável pelo retrato, se a análise precisar</td><td>Preencher já pelo retrato: ele é de 01/10 e o plano pode ter mudado desde o evento</td><td class="n">6.734</td></tr>
   </table></div>
-</section>
-
-<!-- 9 -->
-<section id="orientacao">
-  <div class="kicker">Etapa 9 · Feedback</div>
-  <h2>Onde queremos orientação</h2>
-  <p>Estas são as decisões em aberto que mais afetam as próximas etapas. Para cada uma, registramos a hipótese inicial do grupo e o que a sustenta, para que o retorno possa confirmá-la ou corrigi-la.</p>
-
-  <div class="card q">
-    <div class="lbl bad">Pergunta 1 · Contagem de ativos</div>
-    <h4>Reembolso e chargeback encerram a assinatura no dia do evento ou no fim do período pago?</h4>
-    <p><b>Hipótese inicial:</b> no dia do evento, porque o dinheiro do período volta e a receita é perdida. O roteiro da aula 2 também conta reembolso e chargeback como saída, ao lado da expiração.<br><b>Impacto:</b> 72 assinaturas encerradas por reembolso e 292 por chargeback podem mudar de mês na série de churn.</p>
-  </div>
-
-  <div class="card q">
-    <div class="lbl bad">Pergunta 2 · Contagem de ativos</div>
-    <h4>Durante o período de carência, a pessoa conta como ativa?</h4>
-    <p><b>Hipótese inicial:</b> sim. A cobrança foi recusada, mas a assinatura só termina se a nova tentativa falhar, e aí a saída é registrada na expiração. É coerente com a definição de churn adotada na etapa 2.<br><b>Impacto:</b> 1.346 eventos de carência no log; 1.321 assinaturas terminaram por <code>falha_pagamento</code>.</p>
-  </div>
-
-  <div class="card q">
-    <div class="lbl bad">Pergunta 3 · Segmentação</div>
-    <h4>Como tratar variáveis categóricas, como plano e canal, num agrupamento por k-means?</h4>
-    <p><b>Hipótese inicial:</b> deixá-las fora do k-means, que mede distância entre números, e usá-las depois para descrever os segmentos e testar se a saída de cada um se mantém dentro de cada plano.<br><b>Impacto:</b> define se o plano forma os grupos ou só os explica.</p>
-  </div>
-
-  <div class="card q">
-    <div class="lbl bad">Pergunta 4 · Segmentação</div>
-    <h4>Quando silhueta e leitura de negócio apontam para k diferentes, qual critério deve pesar mais?</h4>
-    <p><b>Hipótese inicial:</b> a leitura de negócio, desde que o k escolhido seja estável nas reamostras. Um corte com silhueta maior, mas que a Vitaliza não trataria de forma diferente, não vira segmento.<br><b>Impacto:</b> a escolha do k e, com ela, as personas da trilha de negócios.</p>
-  </div>
-
   <footer>Grupo 2 · MBA em IA e Dados para Negócios · Inteli · Módulo 2 · 2026</footer>
 </section>
 
@@ -320,10 +283,6 @@ footer{padding:36px 0 0;font-size:13px;color:var(--mute)}
 </div>
 <script>
 const links=[...document.querySelectorAll('nav a')];
-document.querySelectorAll('a.ir').forEach(a=>a.addEventListener('click',ev=>{
-  const alvo=document.getElementById(a.getAttribute('href').slice(1));
-  if(alvo){ev.preventDefault();alvo.scrollIntoView({behavior:'smooth',block:'start'})}
-}));
 const byId=Object.fromEntries(links.map(a=>[a.getAttribute('href').slice(1),a]));
 // Rola por JavaScript em vez de depender da âncora: funciona também quando a página
 // é aberta como data: URL ou dentro de visualizadores que bloqueiam navegação por "#".
