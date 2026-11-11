@@ -64,6 +64,11 @@ nav li a:hover{color:var(--red)}
 nav li a.on{border-color:var(--red);color:var(--red);font-weight:600}
 nav li a i{font-style:normal;color:var(--mute);width:16px;font-variant-numeric:tabular-nums}
 nav li.todo a{color:#a8a39a}
+nav ol.sub{border-left:0;margin:-4px 0 8px}
+nav ol.sub li{border-bottom:0}
+nav ol.sub a{padding:5px 0 5px 16px;font-size:13.5px;color:#3a3a3a}
+nav ol.sub a i{width:26px;font-size:12.5px}
+nav li.has-sub > a{font-weight:600}
 nav .tag{font-size:10.5px;background:#efece6;color:var(--mute);padding:1px 7px;border-radius:99px;margin-left:auto}
 nav .foot{margin-top:24px;font-size:12.5px;color:var(--mute);line-height:1.5}
 footer{padding:36px 0 0;font-size:13px;color:var(--mute)}
@@ -98,6 +103,7 @@ nav .blk.n li a.on{border-color:var(--blue);color:var(--blue)}
   nav .blk{display:contents}
   nav ol{display:flex;border:0;gap:4px}
   nav li{border-bottom:0}
+  nav li.has-sub,nav ol.sub{display:contents}
   nav li a{white-space:nowrap;border:0;padding:6px 10px;margin:0;border-radius:99px}
   nav li a.on{background:var(--red-soft)}
   nav .blk.n li a.on{background:var(--blue-soft)}
@@ -120,14 +126,19 @@ nav .blk.n li a.on{border-color:var(--blue);color:var(--blue)}
     <small>EDA, código e segmentação</small>
     <ol>
       <li><a href="#pergunta"><i>1</i>A pergunta de negócio</a></li>
-      <li><a href="#definicoes"><i>2</i>Definições</a></li>
-      <li><a href="#arquivos"><i>3</i>Os arquivos</a></li>
-      <li><a href="#diagnostico"><i>4</i>Diagnóstico</a></li>
-      <li><a href="#limpeza"><i>5</i>Limpeza</a></li>
-      <li class="todo"><a href="#exploratoria"><i>6</i>Análise exploratória<span class="tag">a fazer</span></a></li>
-      <li class="todo"><a href="#segmentacao"><i>7</i>Segmentação<span class="tag">a fazer</span></a></li>
-      <li><a href="#decisoes"><i>8</i>Registro de decisões</a></li>
-      <li class="todo"><a href="#minideck"><i>9</i>Mini deck<span class="tag">a fazer</span></a></li>
+      <li class="has-sub"><a href="#como-chegamos"><i>2</i>Limpeza</a>
+        <ol class="sub">
+          <li><a href="#como-chegamos"><i>2.1</i>Como chegamos no resultado</a></li>
+          <li><a href="#definicoes"><i>2.2</i>Definições</a></li>
+          <li><a href="#arquivos"><i>2.3</i>Os arquivos</a></li>
+          <li><a href="#diagnostico"><i>2.4</i>Diagnóstico</a></li>
+          <li><a href="#limpeza"><i>2.5</i>Execução</a></li>
+        </ol>
+      </li>
+      <li class="todo"><a href="#exploratoria"><i>3</i>Análise exploratória<span class="tag">a fazer</span></a></li>
+      <li class="todo"><a href="#segmentacao"><i>4</i>Segmentação<span class="tag">a fazer</span></a></li>
+      <li><a href="#decisoes"><i>5</i>Registro de decisões</a></li>
+      <li class="todo"><a href="#minideck"><i>6</i>Mini deck<span class="tag">a fazer</span></a></li>
     </ol>
   </div>
   <div class="blk n">
@@ -189,9 +200,24 @@ nav .blk.n li a.on{border-color:var(--blue);color:var(--blue)}
   </div>
 </section>
 
-<!-- 2 -->
+<!-- 2.1 -->
+<section id="como-chegamos">
+  <div class="kicker">Etapa 2.1 · Limpeza</div>
+  <h2>Como chegamos no resultado</h2>
+  <p class="lead">A base limpa reproduz o número oficial do case: <b>14.753 pagantes ativos em 30/09/2026</b>. Chegamos a ele em cinco passos, cada um decidido antes do seguinte.</p>
+  <ol class="steps">
+    <li><b>Partimos da pergunta, não dos dados.</b> A limpeza serve ao primeiro objetivo do case, contar os pagantes ativos e medir o churn. Os números do enunciado serviram de gabarito: se a base limpa não os reproduzisse, alguma regra estaria errada.</li>
+    <li><b>Definimos os conceitos antes de abrir os arquivos.</b> Ativo é quem tem um período pago cobrindo a data, mesmo com a renovação desligada. Churn é o fim desse período sem renovação, e não o clique em cancelar. A primeira versão das duas definições foi revisada contra o enunciado e o dicionário (2.2).</li>
+    <li><b>Usamos só os arquivos que a pergunta pede.</b> O retrato de assinaturas mostra apenas a situação em 01/10/2026, e o log de eventos começa em 07/2024. Nenhum basta sozinho, então os dois são integrados (2.3).</li>
+    <li><b>Diagnosticamos antes de alterar.</b> Em modo só leitura, encontramos 60 contas de teste ativas e dois fusos horários no log: 44 eventos pareciam posteriores ao corte, mas em Brasília eram de 30/09 (2.4).</li>
+    <li><b>Executamos de forma reproduzível.</b> Um script lê os arquivos brutos sem alterá-los, remove as contas de teste, converte os horários para Brasília e grava o resultado à parte. Cada decisão foi registrada com o critério e o número de linhas afetadas (2.5 e 5).</li>
+  </ol>
+  <div class="why"><b>Por que esse caminho.</b> Cada passo existe para que o número final possa ser conferido: quem lê consegue refazer a conta, ver o que foi removido e por quê, e discordar de uma decisão específica sem precisar refazer todo o trabalho.</div>
+</section>
+
+<!-- 2.2 -->
 <section id="definicoes">
-  <div class="kicker">Etapa 2 · Entendimento do negócio</div>
+  <div class="kicker">Etapa 2.2 · Limpeza · Definições</div>
   <h2>Definir os conceitos antes de abrir os dados</h2>
   <p>Antes de qualquer código, o grupo escreveu a definição operacional dos dois conceitos da pergunta. A primeira versão foi revisada contra o enunciado e o dicionário de dados.</p>
 
@@ -227,7 +253,7 @@ nav .blk.n li a.on{border-color:var(--blue);color:var(--blue)}
 
 <!-- 3 -->
 <section id="arquivos">
-  <div class="kicker">Etapa 3 · Entendimento dos dados</div>
+  <div class="kicker">Etapa 2.3 · Limpeza · Os arquivos</div>
   <h2>Usar só os arquivos que a pergunta pede</h2>
   <p>Dos 12 arquivos do data room, a contagem de ativos e de churn precisa de dois. Nenhum basta sozinho.</p>
   <div class="tbl"><table>
@@ -240,7 +266,7 @@ nav .blk.n li a.on{border-color:var(--blue);color:var(--blue)}
 
 <!-- 4 -->
 <section id="diagnostico">
-  <div class="kicker">Etapa 4 · Entendimento dos dados</div>
+  <div class="kicker">Etapa 2.4 · Limpeza · Diagnóstico</div>
   <h2>Diagnosticar antes de mudar qualquer coisa</h2>
   <p>Os dois arquivos foram inspecionados em modo só leitura.</p>
   <div class="tbl"><table>
@@ -265,7 +291,7 @@ nav .blk.n li a.on{border-color:var(--blue);color:var(--blue)}
 
 <!-- 5 -->
 <section id="limpeza">
-  <div class="kicker">Etapa 5 · Preparação dos dados</div>
+  <div class="kicker">Etapa 2.5 · Limpeza · Execução</div>
   <h2>Executar a limpeza de forma reproduzível</h2>
   <p>Os arquivos originais em <code>dados/brutos/</code> nunca são alterados. A lógica está em <code>src/normaliza_datas.py</code>, que qualquer integrante roda de novo, e o resultado vai para <code>dados/processados/</code>.</p>
   <div class="tbl"><table>
@@ -282,7 +308,7 @@ nav .blk.n li a.on{border-color:var(--blue);color:var(--blue)}
 
 <!-- 6 -->
 <section id="exploratoria">
-  <div class="kicker">Etapa 6 · Entendimento dos dados <span class="pill next">a fazer</span></div>
+  <div class="kicker">Etapa 3 · Entendimento dos dados <span class="pill next">a fazer</span></div>
   <h2>Análise exploratória</h2>
   <div class="todo-box">
     <b>O que esta etapa vai mostrar</b>
@@ -297,7 +323,7 @@ nav .blk.n li a.on{border-color:var(--blue);color:var(--blue)}
 
 <!-- 7 -->
 <section id="segmentacao">
-  <div class="kicker">Etapa 7 · Modelagem <span class="pill next">a fazer</span></div>
+  <div class="kicker">Etapa 4 · Modelagem <span class="pill next">a fazer</span></div>
   <h2>Segmentação dos assinantes</h2>
   <div class="todo-box">
     <b>O que esta etapa vai mostrar</b>
@@ -312,7 +338,7 @@ nav .blk.n li a.on{border-color:var(--blue);color:var(--blue)}
 
 <!-- 8 -->
 <section id="decisoes">
-  <div class="kicker">Etapa 8 · Registro</div>
+  <div class="kicker">Etapa 5 · Registro</div>
   <h2>Cada decisão, com o motivo e o efeito</h2>
   <p>Toda escolha de limpeza fica no <code>decisoes.md</code> do repositório. Para deixar o critério visível, cada decisão aparece ao lado da alternativa que o grupo descartou e do motivo.</p>
   <div class="tbl"><table>
@@ -328,7 +354,7 @@ nav .blk.n li a.on{border-color:var(--blue);color:var(--blue)}
 
 <!-- 9 -->
 <section id="minideck">
-  <div class="kicker">Etapa 9 · Comunicação <span class="pill next">a fazer</span></div>
+  <div class="kicker">Etapa 6 · Comunicação <span class="pill next">a fazer</span></div>
   <h2>Mini deck</h2>
   <div class="todo-box"><b>O que esta etapa vai mostrar</b><ul>
     <li>A história analítica em poucas telas: da pergunta à segmentação.</li>
@@ -393,7 +419,7 @@ nav .blk.n li a.on{border-color:var(--blue);color:var(--blue)}
 </div>
 <script>
 const links=[...document.querySelectorAll('nav a')];
-const byId=Object.fromEntries(links.map(a=>[a.getAttribute('href').slice(1),a]));
+const byId={};links.forEach(a=>{const k=a.getAttribute('href').slice(1);(byId[k]=byId[k]||[]).push(a)});
 // Rola por JavaScript em vez de depender da âncora: funciona também quando a página
 // é aberta como data: URL ou dentro de visualizadores que bloqueiam navegação por "#".
 links.forEach(a=>a.addEventListener('click',ev=>{
@@ -403,7 +429,12 @@ links.forEach(a=>a.addEventListener('click',ev=>{
   alvo.scrollIntoView({behavior:'smooth',block:'start'});
   try{history.replaceState(null,'','#'+alvo.id)}catch(e){}
 }));
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.remove('on'));const a=byId[e.target.id];if(a){a.classList.add('on');a.scrollIntoView({block:'nearest',inline:'nearest'})}}})},{rootMargin:'-30% 0px -65% 0px'});
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(!e.isIntersecting)return;
+  links.forEach(a=>a.classList.remove('on'));
+  (byId[e.target.id]||[]).forEach(a=>{a.classList.add('on');
+    const pai=a.closest('li.has-sub');if(pai)pai.querySelector(':scope > a').classList.add('on');
+    a.scrollIntoView({block:'nearest',inline:'nearest'})});
+})},{rootMargin:'-30% 0px -65% 0px'});
 document.querySelectorAll('main section').forEach(s=>obs.observe(s));
 </script>
 </body>
