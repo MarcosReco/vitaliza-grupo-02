@@ -97,9 +97,11 @@ assinantes parados. Por isso, comparamos por mediana e quartis.
 
 ## Passo 6 · Terceira variável: o plano
 
-À primeira vista, o anual sai menos: 10,9% contra 24,7%. Mas o anual **só pode sair na
-renovação**. Entre os anuais que renovavam entre 01/07 e 30/09, **46% saíram**. A taxa baixa
-vinha de três quartos deles não renovarem no trimestre.
+Na base inteira, 10,9% dos anuais saíram no trimestre, contra 24,7% dos mensais. A comparação não
+é justa: o mensal pode deixar de pagar em qualquer mês, e o anual só quando chega a data de
+renovar. Dos 8.212 anuais, só 1.934 tinham renovação entre julho e setembro; os outros 6.278 não
+tinham como sair e baixavam a taxa do plano. Comparando só quem tinha a chance de sair, **46,4%
+dos anuais saíram**, contra 24,7% dos mensais.
 
 **Tempo de casa.** Na correlação geral ele quase não aparece (−0,04), porque mistura os planos.
 Aberto por plano, só entre quem podia sair: no mensal, a saída cai de 33% (até 2 meses de casa)
