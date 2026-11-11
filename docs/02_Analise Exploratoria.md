@@ -29,6 +29,11 @@ encerraram a assinatura. Isso respondeu a dúvida que tínhamos deixado em abert
 
 A taxa do trimestre (16,7%) fica perto de três meses de churn a 6,6% ao mês (18,5%).
 
+**Por que 14.059 e não 14.753?** São fotos de datas diferentes: a base desta análise é quem pagava
+*antes* da janela de saída. As contas fecham assim: 14.059 em 30/06 − 2.343 que saíram + 3.037 que
+assinaram no trimestre e seguiam ativos = 14.753 em 30/09. Outras 171 assinaram e saíram dentro do
+trimestre e não aparecem em nenhuma das duas fotos.
+
 ## Passo 2 · Conferir a qualidade dos arquivos novos
 
 | Achado | Evidência | Decisão |

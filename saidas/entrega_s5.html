@@ -78,6 +78,11 @@ footer{padding:36px 0 0;font-size:13px;color:var(--mute)}
 .lk b{display:block;color:var(--red);font-size:15px}
 .lk b:after{content:" ↗"}
 .lk span{font-size:14px;color:var(--mute)}
+tr.hl td{background:var(--red-soft);border-top:2px solid var(--red);border-bottom:2px solid var(--red)}
+.big{font-family:Fraunces,Georgia,serif;font-size:28px;font-weight:700;color:var(--red);line-height:1}
+.resultado{display:flex;align-items:center;gap:18px;background:var(--card);border:2px solid var(--red);border-radius:12px;padding:16px 20px;margin:6px 0 18px}
+.resultado .big{font-size:44px}
+.resultado span:last-child{font-size:16px}
 code,.lk b{overflow-wrap:anywhere}
 .lk{min-width:0}
 figure{margin:18px 0 0;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
@@ -313,11 +318,12 @@ nav .blk.n li a.on{border-color:var(--blue);color:var(--blue)}
 <section id="limpeza">
   <div class="kicker">Etapa 2.5 · Limpeza · Execução</div>
   <h2>Executar a limpeza de forma reproduzível</h2>
+  <div class="resultado"><span class="big">14.753</span><span><b>pagantes ativos em 30/09/2026</b> depois da limpeza: exatamente o número oficial do enunciado.</span></div>
   <p>Os arquivos originais em <code>dados/brutos/</code> nunca são alterados. A lógica está em <code>src/normaliza_datas.py</code>, que qualquer integrante roda de novo, e o resultado vai para <code>dados/processados/</code>.</p>
   <div class="tbl"><table>
     <tr><th>Passo</th><th style="text-align:right">Antes</th><th style="text-align:right">Depois</th></tr>
     <tr><td>Assinaturas: remover contas de teste</td><td class="n">32.643</td><td class="n">32.583</td></tr>
-    <tr><td>Assinaturas ativas</td><td class="n">14.813</td><td class="n"><b>14.753</b> ✓</td></tr>
+    <tr class="hl"><td><b>Pagantes ativos em 30/09/2026</b></td><td class="n">14.813</td><td class="n"><span class="big">14.753</span> ✓</td></tr>
     <tr><td>Eventos de loja convertidos de UTC para Brasília</td><td class="n">186.323</td><td class="n">186.323</td></tr>
     <tr><td>Eventos do site, já em Brasília</td><td class="n">89.242</td><td class="n">89.242</td></tr>
     <tr><td>Eventos após o corte</td><td class="n">44</td><td class="n"><b>0</b></td></tr>
@@ -381,6 +387,7 @@ nav .blk.n li a.on{border-color:var(--blue);color:var(--blue)}
     <div class="k"><b>16,7%</b><span>taxa de saída no trimestre</span></div>
     <div class="k"><b>56%</b><span>saíram sem ter desligado a renovação antes</span></div>
   </div>
+  <div class="why"><b>Por que 14.059 e não 14.753?</b> São fotos de datas diferentes. Para ver quem saiu entre julho e setembro, a base precisa ser quem pagava <b>antes</b> da janela, em 30/06. As contas fecham: 14.059 pagantes em 30/06 − 2.343 que saíram + 3.037 que assinaram no trimestre e seguiam ativos = <b>14.753 em 30/09</b>. Outras 171 assinaram e saíram dentro do próprio trimestre, e não aparecem em nenhuma das duas fotos.</div>
   <div class="tbl"><table>
     <tr><th>Mediana (1º–3º quartil)</th><th>Saiu</th><th>Ficou</th></tr>
     <tr><td>Treinos por semana (abr–jun)</td><td>1,3 (0,3–2,5)</td><td>1,9 (1,1–2,8)</td></tr>
