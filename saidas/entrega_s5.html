@@ -508,6 +508,15 @@ th{background:#f5f3ed}
     <tr><td><b>Estabilidade</b></td><td>Em dez reamostras, o Rand ajustado fica em 0,97 ou mais; com outra semente, 1,000.</td></tr>
     <tr><td><b>Negócio</b></td><td>Começamos pelo k = 3, como na aula. O k = 4 separa os ativos ao ar livre dos de ambiente fechado; o k = 5 separa ainda os novatos dos esporádicos, que pedem ações diferentes.</td></tr>
   </table></div>
+  <h3>Como cada k divide a base</h3>
+  <p>A leitura de negócio olha o tamanho de cada grupo e quanto ele perde. Entre parênteses, a saída em 60 dias de quem podia sair; a média da base é de 21%.</p>
+  <div class="tbl"><table>
+    <tr><th>k</th><th>Grupos (% da base · saída)</th><th>O que o k a mais acrescenta</th></tr>
+    <tr><td class="n">2</td><td>Treinam 94% (19%) · Parados 6% (67%)</td><td>Só separa quem parou de vez</td></tr>
+    <tr><td class="n">3</td><td>Ativos 57% (12%) · Treino irregular 37% (33%) · Parados 6% (67%)</td><td>Separa quem treina pouco de quem treina com frequência</td></tr>
+    <tr><td class="n">4</td><td>Ativos ao ar livre 37% (13%) · Ativos em ambiente fechado 30% (12%) · Esporádicos 27% (41%) · Parados 6% (67%)</td><td>Divide os ativos pelo tipo de treino</td></tr>
+    <tr class="hl"><td class="n"><b>5</b></td><td>Ativos ao ar livre 34% (13%) · Ativos em ambiente fechado 28% (11%) · <b>Esporádicos 20% (52%)</b> · Novatos 12% (18%) · Parados 6% (67%)</td><td>Tira os novatos do grupo irregular e concentra o risco nos esporádicos</td></tr>
+  </table></div>
 </section>
 
 <section id="seg-perfis">
