@@ -75,7 +75,10 @@ footer{padding:36px 0 0;font-size:13px;color:var(--mute)}
 .parte p{margin:0;opacity:.95}
 .neg-s .kicker{color:var(--blue)}
 .neg-s .todo-box{border-color:#c9d6ea;background:#f6f8fc}
-nav .t{display:block;text-decoration:none}
+nav a.t{display:flex;align-items:center;gap:12px;text-decoration:none;text-transform:none;letter-spacing:0;font-size:16px;font-weight:600;color:var(--ink);background:var(--card);border:1px solid var(--div);border-left:4px solid var(--div);border-radius:10px;padding:12px 14px;margin-bottom:28px;transition:border-color .15s,color .15s}
+nav a.t:before{content:"G2";display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--red);color:#fff;font-size:12px;font-weight:600;flex:none}
+nav a.t:hover{color:var(--red)}
+nav a.t.on{border-color:var(--red);border-left-color:var(--red);color:var(--red);background:var(--red-soft)}
 nav .blk{margin-bottom:28px}
 nav .blk-h{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin:0 0 2px;color:var(--red)}
 nav .blk small{display:block;color:var(--mute);font-size:12.5px;margin-bottom:10px;line-height:1.4}
@@ -88,7 +91,9 @@ nav .blk.n li a.on{border-color:var(--blue);color:var(--blue)}
   .wrap{grid-template-columns:minmax(0,1fr);gap:0;padding:0 16px 40px}
   nav,main{min-width:0}
   nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0;margin:0 -16px 28px;padding-left:16px}
-  nav .t,nav .foot,nav .blk-h,nav .blk small{display:none}
+  nav .foot,nav .blk-h,nav .blk small{display:none}
+  nav a.t{margin:0;padding:4px 12px 4px 4px;font-size:14px;white-space:nowrap;border-radius:99px;border-left-width:1px;flex:none}
+  nav a.t:before{width:24px;height:24px;font-size:10px}
   nav{display:flex;overflow-x:auto;gap:4px}
   nav .blk{display:contents}
   nav ol{display:flex;border:0;gap:4px}
@@ -109,7 +114,7 @@ nav .blk.n li a.on{border-color:var(--blue);color:var(--blue)}
 <div class="wrap">
 
 <nav aria-label="Passo a passo">
-  <a href="#grupo" class="t">O grupo</a>
+  <a href="#grupo" class="t on">O grupo</a>
   <div class="blk t">
     <div class="blk-h">Parte 1 · Trilha de Tecnologia</div>
     <small>EDA, código e segmentação</small>
