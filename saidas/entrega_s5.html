@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vitaliza · Grupo 2 · Entrega parcial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f6f2;--ink:#1d1d1f;--mute:#6b6b6b;--line:#e2dfd8;--red:#d6453d;--red-soft:#fbeceb;--card:#fff;--ok:#2f7d4f;--ok-soft:#e6f2ea}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Inter,system-ui,sans-serif}
+.wrap{display:grid;grid-template-columns:270px minmax(0,1fr);max-width:1240px;margin:0 auto;gap:64px;padding:56px 32px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;letter-spacing:-.01em;margin:0}
+h1{font-size:52px;line-height:1.05;margin-bottom:16px}
+h2{font-size:34px;line-height:1.15;margin-bottom:14px}
+h3{font-size:21px;margin:28px 0 10px}
+p{margin:0 0 14px}
+.kicker{color:var(--red);font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+section{padding:52px 0;border-bottom:1px solid var(--line);scroll-margin-top:24px}
+section:first-child{padding-top:0}
+.lead{font-size:19px;color:#3a3a3a;max-width:680px}
+.why{background:var(--red-soft);border-radius:10px;padding:14px 18px;font-size:15px;margin:18px 0}
+.why b{color:var(--red)}
+blockquote{margin:20px 0;padding:18px 22px;background:var(--card);border-left:4px solid var(--red);font-size:18px;border-radius:0 10px 10px 0}
+.team{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:28px}
+.p{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 12px;text-align:center}
+.av{width:54px;height:54px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;margin:0 auto 10px;font-weight:600}
+.p b{display:block;font-size:14px;line-height:1.3}
+.meta{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:22px;font-size:14px;color:var(--mute)}
+.meta b{color:var(--ink);font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+.k{border-top:3px solid var(--red);background:var(--card);padding:16px;border-radius:0 0 10px 10px}
+.k b{font-family:Fraunces,serif;font-size:30px;display:block;line-height:1.2}
+.k span{font-size:13px;color:var(--mute)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
+.card h4{margin:0 0 8px;font-size:15px}
+.card p{font-size:15px;margin:0}
+.lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.lbl.bad{color:var(--red)}.lbl.good{color:var(--ok)}
+.tbl{overflow-x:auto;margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:600;background:#fbfaf7}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+code{font-size:13.5px;background:#efece6;padding:1px 6px;border-radius:5px}
+ol.steps{padding-left:20px;margin:10px 0}ol.steps li{margin-bottom:6px}
+.todo-box{border:2px dashed var(--line);border-radius:12px;padding:20px 22px;background:#fbfaf7}
+.todo-box ul{margin:8px 0 0;padding-left:20px}
+.pill{display:inline-block;font-size:11px;font-weight:600;padding:2px 9px;border-radius:99px;vertical-align:middle}
+.pill.done{background:var(--ok-soft);color:var(--ok)}.pill.next{background:#efece6;color:var(--mute)}
+/* menu */
+nav{position:sticky;top:40px;align-self:start}
+nav .t{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:16px}
+nav ol{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
+nav li a{display:flex;align-items:center;gap:10px;padding:9px 0 9px 16px;margin-left:-2px;border-left:2px solid transparent;color:var(--ink);text-decoration:none;font-size:14.5px;transition:color .15s}
+nav li a:hover{color:var(--red)}
+nav li a.on{border-color:var(--red);color:var(--red);font-weight:600}
+nav li a i{font-style:normal;color:var(--mute);width:16px;font-variant-numeric:tabular-nums}
+nav li.todo a{color:#a8a39a}
+nav .tag{font-size:10.5px;background:#efece6;color:var(--mute);padding:1px 7px;border-radius:99px;margin-left:auto}
+nav .foot{margin-top:24px;font-size:12.5px;color:var(--mute);line-height:1.5}
+footer{padding:36px 0 0;font-size:13px;color:var(--mute)}
+@media (max-width:900px){
+  .wrap{grid-template-columns:1fr;gap:0;padding:0 16px 40px}
+  nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0;margin:0 -16px 28px;padding-left:16px}
+  nav .t,nav .foot{display:none}
+  nav ol{display:flex;overflow-x:auto;border:0;gap:4px}
+  nav li a{white-space:nowrap;border:0;padding:6px 10px;margin:0;border-radius:99px}
+  nav li a.on{background:var(--red-soft)}
+  nav .tag{display:none}
+  h1{font-size:38px}h2{font-size:28px}
+  .team{grid-template-columns:repeat(2,1fr)}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .grid2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav aria-label="Passo a passo">
+  <div class="t">O caminho</div>
+  <ol>
+    <li><a href="#grupo"><i>0</i>O grupo</a></li>
+    <li><a href="#pergunta"><i>1</i>A pergunta de negócio</a></li>
+    <li><a href="#definicoes"><i>2</i>Definições</a></li>
+    <li><a href="#arquivos"><i>3</i>Os arquivos</a></li>
+    <li><a href="#diagnostico"><i>4</i>Diagnóstico</a></li>
+    <li><a href="#limpeza"><i>5</i>Limpeza</a></li>
+    <li class="todo"><a href="#exploratoria"><i>6</i>Análise exploratória<span class="tag">a fazer</span></a></li>
+    <li class="todo"><a href="#segmentacao"><i>7</i>Segmentação<span class="tag">a fazer</span></a></li>
+    <li><a href="#decisoes"><i>8</i>Registro de decisões</a></li>
+  </ol>
+  <div class="foot">Repositório <code>vitaliza-grupo-02</code><br>Data de corte: 30/09/2026</div>
+</nav>
+
+<main>
+
+<!-- 0 -->
+<section id="grupo">
+  <div class="kicker">MBA em IA e Dados para Negócios · Módulo 2</div>
+  <h1>Vitaliza: quem sai, por quê e em quem agir</h1>
+  <p class="lead">Entrega parcial de tecnologia do <b>Grupo 2</b>. Esta página resume o caminho analítico percorrido: da pergunta de negócio à base limpa e, em seguida, à análise exploratória e à segmentação dos assinantes.</p>
+  <div class="team">
+    <div class="p"><div class="av">LM</div><b>Leonardo Molan</b></div>
+    <div class="p"><div class="av">MA</div><b>Marcos Antonio</b></div>
+    <div class="p"><div class="av">R</div><b>Roberto</b></div>
+    <div class="p"><div class="av">RB</div><b>Rogerio Barreto</b></div>
+    <div class="p"><div class="av">VF</div><b>Vitor Fortunato</b></div>
+  </div>
+  <div class="meta">
+    <span><b>Entrega:</b> parcial, 13/11/2026</span>
+    <span><b>Escopo:</b> até a segmentação</span>
+    <span><b>Método:</b> CRISP-DM</span>
+  </div>
+</section>
+
+<!-- 1 -->
+<section id="pergunta">
+  <div class="kicker">Etapa 1 · Entendimento do negócio</div>
+  <h2>Partir da pergunta, não dos dados</h2>
+  <p>A limpeza atende ao primeiro objetivo do case, <em>contar e medir a base</em>:</p>
+  <blockquote>Quantos assinantes pagantes ativos a Vitaliza tinha em 30/09/2026, quanto perde por mês e como isso varia por plano e por canal?</blockquote>
+  <div class="why"><b>Princípio adotado.</b> Limpar não é deixar a base "bonita": é deixá-la capaz de responder a essa pergunta. Cada correção, remoção ou marcação se justifica pelo efeito na contagem de assinantes ou na medida de churn.</div>
+  <p>O enunciado traz os números oficiais, que usamos como <b>teste da limpeza</b>: se a base limpa não os reproduz, alguma regra está errada.</p>
+  <div class="kpis">
+    <div class="k"><b>14.753</b><span>pagantes ativos em 30/09/2026</span></div>
+    <div class="k"><b>5,6%</b><span>churn médio mensal em 2025</span></div>
+    <div class="k"><b>6,6%</b><span>churn médio mensal jan–set/2026</span></div>
+    <div class="k"><b>8,1%</b><span>abril/2026, o pior mês</span></div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="definicoes">
+  <div class="kicker">Etapa 2 · Entendimento do negócio</div>
+  <h2>Definir os conceitos antes de abrir os dados</h2>
+  <p>Antes de qualquer código, o grupo escreveu a definição operacional dos dois conceitos da pergunta. A primeira versão foi revisada contra o enunciado e o dicionário de dados.</p>
+
+  <h3>Assinante pagante ativo na data X</h3>
+  <div class="grid2">
+    <div class="card"><div class="lbl bad">Primeira versão</div><p>Não desligou a renovação, não está no teste de 7 dias e não usa a versão grátis.</p></div>
+    <div class="card"><div class="lbl good">Versão final</div><p>Tem um período <b>pago</b> (não teste) que cobre a data X, com ou sem renovação automática ligada.</p></div>
+  </div>
+  <p style="margin-top:12px;font-size:15px;color:var(--mute)">Por quê: entre o aviso de renovação desligada e a expiração, a pessoa continua assinante e já pagou pelo período. Excluí-la subestimaria a base.</p>
+
+  <h3>Churn do mês</h3>
+  <div class="grid2">
+    <div class="card"><div class="lbl bad">Primeira versão</div><p>A data em que a pessoa clica em cancelar.</p></div>
+    <div class="card"><div class="lbl good">Versão final</div><p>O período pago terminou dentro do mês e não foi renovado (evento <code>assinatura_expirada</code>).</p></div>
+  </div>
+
+  <h3>Teste de estresse</h3>
+  <p>Por que uma assinatura cancelada, mas ainda não expirada, conta como ativa?</p>
+  <ol class="steps">
+    <li><b>A receita do período já entrou</b>: a empresa ainda não perdeu nada.</li>
+    <li><b>O cancelamento é reversível</b>: existe o evento <code>renovacao_automatica_religada</code>.</li>
+    <li><b>O plano anual distorceria a série</b>: a perda cairia meses antes de acontecer.</li>
+    <li><b>Para 70% da base (lojas), a Vitaliza nem vê o clique</b>, só os avisos do servidor da loja.</li>
+  </ol>
+  <p>O contra-argumento foi mantido: para <b>agir</b>, o clique é o momento que importa. O grupo trabalha, então, com dois conceitos que não se misturam na mesma conta.</p>
+  <div class="tbl"><table>
+    <tr><th></th><th>Churn efetivo</th><th>Intenção de cancelar</th></tr>
+    <tr><td><b>Evento</b></td><td><code>assinatura_expirada</code></td><td><code>renovacao_automatica_desligada</code> · <code>cancelamento_web</code></td></tr>
+    <tr><td><b>Natureza</b></td><td>Indicador atrasado (o fato)</td><td>Indicador antecipado (o sinal)</td></tr>
+    <tr><td><b>Uso no case</b></td><td>Medir a base</td><td>Prever e agir</td></tr>
+  </table></div>
+</section>
+
+<!-- 3 -->
+<section id="arquivos">
+  <div class="kicker">Etapa 3 · Entendimento dos dados</div>
+  <h2>Usar só os arquivos que a pergunta pede</h2>
+  <p>Dos 12 arquivos do data room, a contagem de ativos e de churn precisa de dois. Nenhum basta sozinho.</p>
+  <div class="tbl"><table>
+    <tr><th>Arquivo</th><th>O que é</th><th>Por que sozinho não basta</th></tr>
+    <tr><td><code>assinaturas.csv</code></td><td>Retrato de 01/10/2026: cada mudança sobrescreve a anterior</td><td>Mostra a situação em 01/10, não em qualquer data passada</td></tr>
+    <tr><td><code>eventos_assinatura.csv</code></td><td>Log com um evento por linha, desde 01/07/2024</td><td>Não enxerga assinaturas iniciadas antes de 07/2024</td></tr>
+  </table></div>
+  <div class="why"><b>Regra de contagem.</b> Ativa na data X = <b>entrou</b> (<code>assinatura_iniciada</code>, ou <code>inicio</code> no retrato para as anteriores a 07/2024) e <b>ainda não saiu</b> (<code>assinatura_expirada</code>). A expiração sozinha diz quem saiu, não quem está dentro.</div>
+</section>
+
+<!-- 4 -->
+<section id="diagnostico">
+  <div class="kicker">Etapa 4 · Entendimento dos dados</div>
+  <h2>Diagnosticar antes de mudar qualquer coisa</h2>
+  <p>Os dois arquivos foram inspecionados em modo só leitura.</p>
+  <div class="tbl"><table>
+    <tr><th>Verificação</th><th>Resultado</th></tr>
+    <tr><td>Linhas</td><td>assinaturas 32.643 · eventos 275.565</td></tr>
+    <tr><td>Duplicatas</td><td>Nenhuma</td></tr>
+    <tr><td>Fim anterior ao início</td><td>Nenhum</td></tr>
+    <tr><td>Datas de <code>assinaturas</code></td><td>Só o dia, já em horário de Brasília</td></tr>
+    <tr><td>Datas de <code>eventos</code></td><td>Lojas em UTC (terminadas em "Z") · site em Brasília</td></tr>
+    <tr><td>Coerência entre arquivos</td><td>Toda <code>data_fim</code> tem um <code>assinatura_expirada</code>, e vice-versa</td></tr>
+    <tr><td>Assinaturas por pessoa</td><td>Exatamente 1 (ninguém sai e volta nesta base)</td></tr>
+  </table></div>
+
+  <h3>Achados que exigiram decisão</h3>
+  <div class="grid2">
+    <div class="card"><h4>60 contas de teste</h4><p>E-mail <code>@vitaliza.com.br</code>, plano cortesia, canal interno, todas ativas e sem eventos. Sem elas, os ativos caem de 14.813 para <b>14.753, o número do enunciado</b>.</p></div>
+    <div class="card"><h4>Dois fusos no log</h4><p>Lidos como texto, 44 eventos pareciam posteriores ao corte. Em Brasília, aconteceram em 30/09/2026. Sem conversão, cairiam no mês errado.</p></div>
+    <div class="card"><h4>Datas em branco</h4><p>As 14.753 ativas não têm <code>data_fim</code>. As linhas são mantidas: apagá-las apagaria todos os ativos.</p></div>
+    <div class="card"><h4>Horário de verão</h4><p>Abolido no Brasil em 2019; os eventos começam em 2024. A conversão usa o fuso <code>America/Sao_Paulo</code>, que o trataria se existisse.</p></div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="limpeza">
+  <div class="kicker">Etapa 5 · Preparação dos dados</div>
+  <h2>Executar a limpeza de forma reproduzível</h2>
+  <p>Os arquivos originais em <code>dados/brutos/</code> nunca são alterados. A lógica está em <code>src/normaliza_datas.py</code>, que qualquer integrante roda de novo, e o resultado vai para <code>dados/processados/</code>.</p>
+  <div class="tbl"><table>
+    <tr><th>Passo</th><th style="text-align:right">Antes</th><th style="text-align:right">Depois</th></tr>
+    <tr><td>Assinaturas: remover contas de teste</td><td class="n">32.643</td><td class="n">32.583</td></tr>
+    <tr><td>Assinaturas ativas</td><td class="n">14.813</td><td class="n"><b>14.753</b> ✓</td></tr>
+    <tr><td>Eventos de loja convertidos de UTC para Brasília</td><td class="n">186.323</td><td class="n">186.323</td></tr>
+    <tr><td>Eventos do site, já em Brasília</td><td class="n">89.242</td><td class="n">89.242</td></tr>
+    <tr><td>Eventos após o corte</td><td class="n">44</td><td class="n"><b>0</b></td></tr>
+    <tr><td>Total de eventos (nenhum removido)</td><td class="n">275.565</td><td class="n">275.565</td></tr>
+  </table></div>
+  <p style="margin-top:14px;font-size:15px">O arquivo de eventos mantém a data original e acrescenta <code>origem_fuso</code> e <code>data_hora_brt</code>, para que qualquer conversão possa ser auditada.</p>
+</section>
+
+<!-- 6 -->
+<section id="exploratoria">
+  <div class="kicker">Etapa 6 · Entendimento dos dados <span class="pill next">a fazer</span></div>
+  <h2>Análise exploratória</h2>
+  <div class="todo-box">
+    <b>O que esta etapa vai mostrar</b>
+    <ul>
+      <li>Estatística descritiva de cada variável: posição, dispersão e forma (média com mediana, histograma e boxplot).</li>
+      <li>Quem saiu e quem ficou lado a lado: tamanho, taxa de saída, centro e dispersão de cada característica.</li>
+      <li>Correlação das variáveis entre si e com a saída, e se a diferença se mantém quando se abre pelo plano.</li>
+      <li>Três frases: o que o dado diz, o que não diz e a próxima pergunta.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 7 -->
+<section id="segmentacao">
+  <div class="kicker">Etapa 7 · Modelagem <span class="pill next">a fazer</span></div>
+  <h2>Segmentação dos assinantes</h2>
+  <div class="todo-box">
+    <b>O que esta etapa vai mostrar</b>
+    <ul>
+      <li>k-means nos pagantes ativos em 31/07/2026, com as variáveis padronizadas e a semente fixa.</li>
+      <li>O k defendido pelas quatro lentes: inércia, silhueta, estabilidade e leitura de negócio.</li>
+      <li>Para cada segmento: tamanho, medianas, saída histórica em 60 dias, um nome e uma frase de negócio.</li>
+      <li>Os gráficos que sustentam a segmentação, cada um com a pergunta que responde.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 8 -->
+<section id="decisoes">
+  <div class="kicker">Etapa 8 · Registro</div>
+  <h2>Cada decisão, com o motivo e o efeito</h2>
+  <p>Toda escolha de limpeza fica no <code>decisoes.md</code> do repositório. Resumo até aqui:</p>
+  <div class="tbl"><table>
+    <tr><th>Arquivo</th><th>Decisão</th><th>Critério</th><th style="text-align:right">Linhas</th></tr>
+    <tr><td><code>assinaturas</code></td><td>Remover contas de teste</td><td>E-mail <code>@vitaliza.com.br</code> (plano cortesia, canal interno)</td><td class="n">−60</td></tr>
+    <tr><td><code>eventos</code></td><td>Converter horários para Brasília</td><td>Terminado em "Z" → UTC; senão, já em Brasília</td><td class="n">186.323</td></tr>
+    <tr><td><code>eventos</code></td><td>Manter 44 eventos de 30/09</td><td>Em Brasília, anteriores a 01/10/2026</td><td class="n">44</td></tr>
+    <tr><td><code>assinaturas</code></td><td>Não converter datas</td><td>Já estão no dia de Brasília (conferido contra os eventos)</td><td class="n">0</td></tr>
+    <tr><td><code>assinaturas</code></td><td>Manter <code>data_fim</code> em branco</td><td>Branco = assinatura ativa</td><td class="n">14.753</td></tr>
+    <tr><td><code>eventos</code></td><td>Marcar <code>plano</code> vazio para investigar</td><td>Recuperável pelo retrato, se a análise precisar</td><td class="n">6.734</td></tr>
+  </table></div>
+  <h3>Em aberto</h3>
+  <p>Como tratar <code>reembolso</code>, <code>chargeback</code> e <code>periodo_carencia</code> na contagem de ativos: o acesso termina no dia do evento ou no fim do período pago?</p>
+  <footer>Grupo 2 · MBA em IA e Dados para Negócios · Inteli · Módulo 2 · 2026</footer>
+</section>
+
+</main>
+</div>
+<script>
+const links=[...document.querySelectorAll('nav a')];
+const byId=Object.fromEntries(links.map(a=>[a.getAttribute('href').slice(1),a]));
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.remove('on'));const a=byId[e.target.id];if(a){a.classList.add('on');a.scrollIntoView({block:'nearest',inline:'nearest'})}}})},{rootMargin:'-30% 0px -65% 0px'});
+document.querySelectorAll('main section').forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>
