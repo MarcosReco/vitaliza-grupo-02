@@ -54,7 +54,8 @@ ol.steps{padding-left:20px;margin:10px 0}ol.steps li{margin-bottom:6px}
 .pill{display:inline-block;font-size:11px;font-weight:600;padding:2px 9px;border-radius:99px;vertical-align:middle}
 .pill.done{background:var(--ok-soft);color:var(--ok)}.pill.next{background:#efece6;color:var(--mute)}
 /* menu */
-nav{position:sticky;top:40px;align-self:start}
+nav{position:sticky;top:40px;align-self:start;max-height:calc(100vh - 56px);overflow-y:auto;overscroll-behavior:contain;padding-right:8px;scrollbar-width:thin;scrollbar-color:var(--div) transparent}
+nav::-webkit-scrollbar{width:6px}nav::-webkit-scrollbar-thumb{background:var(--div);border-radius:6px}
 nav .t{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:16px}
 nav ol{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
 nav li a{display:flex;align-items:center;gap:10px;padding:9px 0 9px 16px;margin-left:-2px;border-left:2px solid transparent;color:var(--ink);text-decoration:none;font-size:14.5px;transition:color .15s}
@@ -116,7 +117,7 @@ nav .blk.n li a.on{border-color:var(--blue);color:var(--blue)}
   nav .foot,nav .blk-h,nav .blk small{display:none}
   nav a.t{margin:0;padding:4px 12px 4px 4px;font-size:14px;white-space:nowrap;border-radius:99px;border-left-width:1px;flex:none}
   nav a.t:before{width:24px;height:24px;font-size:10px}
-  nav{display:flex;overflow-x:auto;gap:4px}
+  nav{display:flex;overflow-x:auto;overflow-y:hidden;max-height:none;gap:4px}
   nav .blk{display:contents}
   nav ol{display:flex;border:0;gap:4px}
   nav li{border-bottom:0}
@@ -624,6 +625,15 @@ nav .blk.n li a.on{border-color:var(--blue);color:var(--blue)}
 </div>
 <script>
 const links=[...document.querySelectorAll('nav a')];
+// Mantém o item ativo visível dentro do menu, rolando só o menu (vertical no computador, horizontal no celular).
+const menu=document.querySelector('nav');
+function mostrarNoMenu(a){
+  const m=menu.getBoundingClientRect(), r=a.getBoundingClientRect(), folga=48;
+  if(menu.scrollHeight>menu.clientHeight && (r.top<m.top+folga || r.bottom>m.bottom-folga))
+    menu.scrollTo({top:menu.scrollTop+r.top-m.top-m.height/2+r.height/2,behavior:'smooth'});
+  if(menu.scrollWidth>menu.clientWidth && (r.left<m.left+folga || r.right>m.right-folga))
+    menu.scrollTo({left:menu.scrollLeft+r.left-m.left-m.width/2+r.width/2,behavior:'smooth'});
+}
 const byId={};links.forEach(a=>{const k=a.getAttribute('href').slice(1);(byId[k]=byId[k]||[]).push(a)});
 // Rola por JavaScript em vez de depender da âncora: funciona também quando a página
 // é aberta como data: URL ou dentro de visualizadores que bloqueiam navegação por "#".
@@ -638,7 +648,7 @@ const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(!e.isIntersecting)retu
   links.forEach(a=>a.classList.remove('on'));
   (byId[e.target.id]||[]).forEach(a=>{a.classList.add('on');
     const pai=a.closest('li.has-sub');if(pai)pai.querySelector(':scope > a').classList.add('on');
-    a.scrollIntoView({block:'nearest',inline:'nearest'})});
+    mostrarNoMenu(a)});
 })},{rootMargin:'-30% 0px -65% 0px'});
 document.querySelectorAll('main section').forEach(s=>obs.observe(s));
 </script>
