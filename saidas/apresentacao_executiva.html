@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vitaliza · Grupo 2 · Apresentação executiva</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1d1d1f;--mute:#6b6b6b;--line:#ece8e0;--red:#d6453d;--red-soft:#fbeceb;--card:#fbfaf6;--areia:#f6f3ec;--fundo:#ebe8e1}
+*{box-sizing:border-box}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+body{margin:0;background:var(--fundo);color:var(--ink);font:16px/1.5 Inter,system-ui,sans-serif}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;margin:0;letter-spacing:-.01em}
+.tela{min-height:100vh;display:grid;place-items:center;padding:3vh 3vw;scroll-snap-align:center}
+.slide{width:min(1280px,94vw,calc(94vh * 16 / 9));aspect-ratio:16/9;background:#fff;box-shadow:0 12px 44px rgba(40,30,15,.10);display:grid;grid-template-columns:38% 62%;position:relative;overflow:hidden;font-size:clamp(9px,min(1.12vw,1.99vh),17px)}
+.esq{background:var(--areia);padding:8% 7% 9%;display:flex;flex-direction:column;justify-content:center}
+.dir{padding:6% 6% 9% 5.5%;display:flex;flex-direction:column;justify-content:center;gap:1.1em}
+.kick{font-size:.9em;font-weight:600;color:var(--red);letter-spacing:.02em}
+.num{font-family:Fraunces,Georgia,serif;font-weight:700;color:var(--red);font-size:7.6em;line-height:.95;margin:.12em 0 .1em}
+.num small{font-size:.38em;font-weight:500;margin-left:.08em}
+.esq h2{font-size:2em;line-height:1.15}
+.esq p{color:var(--mute);font-size:1.12em;margin:.8em 0 0}
+.dir h3{font-size:1.45em;line-height:1.2}
+.dir p{margin:0;font-size:1.08em}
+ul.pts{margin:0;padding:0;list-style:none;display:grid;gap:.75em}
+ul.pts li{padding-left:1.1em;position:relative;font-size:1.08em}
+ul.pts li:before{content:"";position:absolute;left:0;top:.6em;width:.45em;height:.45em;border-radius:50%;background:var(--red)}
+table{border-collapse:collapse;width:100%;font-size:1.05em}
+th,td{padding:.5em .75em;text-align:left;border-bottom:1px solid var(--line)}
+th{font-size:.82em;color:var(--mute);font-weight:600;background:#f5f3ed}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tr.hl td{background:var(--red-soft);font-weight:600}
+.caixa{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.9em 1.1em}
+.caixa b{color:var(--red)}
+.nota{font-size:.85em;color:var(--mute)}
+.pe{position:absolute;left:4%;right:4%;bottom:3.2%;display:flex;justify-content:space-between;font-size:.8em;color:var(--mute)}
+.passos{display:grid;grid-template-columns:repeat(3,1fr);gap:.8em}
+.passos div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.8em .9em;font-size:.95em}
+.passos b{display:block;font-family:Fraunces,Georgia,serif;font-size:1.25em;color:var(--red)}
+.dec td:first-child{font-weight:600;white-space:nowrap}
+.ajuda{position:fixed;right:16px;bottom:12px;font-size:12px;color:var(--mute)}
+@media (max-width:760px){
+  html{scroll-snap-type:none}
+  .tela{min-height:auto;padding:16px}
+  .slide{aspect-ratio:auto;grid-template-columns:1fr;font-size:13px;width:100%}
+  .esq{padding:28px 22px}.dir{padding:22px 18px 48px}
+  .num{font-size:5.5em}
+  .passos{grid-template-columns:1fr}
+  .ajuda{display:none}
+}
+@media print{
+  @page{size:16in 9in;margin:0}
+  html{scroll-snap-type:none}body{background:#fff}
+  .tela{min-height:0;padding:0;page-break-after:always;break-after:page;display:block}
+  .slide{width:16in;height:9in;aspect-ratio:auto;box-shadow:none;font-size:15px}
+  .ajuda{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- 1 -->
+<section class="tela" id="s1"><div class="slide">
+  <div class="esq">
+    <div class="kick">1 · O problema</div>
+    <div class="num">6,6%<small>/mês</small></div>
+    <h2>de churn em 2026, contra 5,6% em 2025</h2>
+    <p>Abril chegou a 8,1%. A base cresceu, mas a Vitaliza perde cada vez mais assinantes por mês.</p>
+  </div>
+  <div class="dir">
+    <h3>A empresa não vê quem está saindo a tempo de agir</h3>
+    <ul class="pts">
+      <li><b>14.753 pagantes</b> em 30/09/2026.</li>
+      <li><b>70% pagam pela loja</b> (App Store ou Google Play): o cancelamento acontece fora do app, sem motivo declarado.</li>
+      <li>Para agir antes, a Vitaliza precisa de <b>sinais de uso</b>, não da pesquisa de saída, que só 10% respondem.</li>
+    </ul>
+    <div class="passos">
+      <div><b>14.753</b>a base limpa reproduz o número oficial do case</div>
+      <div><b>3</b>problemas de qualidade corrigidos, como a tabela de uso que ignorava treinos de relógio</div>
+      <div><b>28</b>decisões registradas, cada uma com critério e linhas afetadas</div>
+    </div>
+  </div>
+  <div class="pe"><span>Grupo 2 · Vitaliza · Entrega parcial · Tecnologia</span><span>1 / 3</span></div>
+</div></section>
+
+<!-- 2 -->
+<section class="tela" id="s2"><div class="slide">
+  <div class="esq">
+    <div class="kick">2 · O que os dados mostram</div>
+    <div class="num">37%</div>
+    <h2>das saídas vêm dos esporádicos, só 20% da base</h2>
+    <p>Assinantes antigos, quase todos do plano anual, que foram parando de treinar.</p>
+  </div>
+  <div class="dir">
+    <h3>Cinco grupos de comportamento entre os 14.032 pagantes de 31/07</h3>
+    <table>
+      <tr><th>Segmento</th><th class="n">% da base</th><th class="n">Saída em 60 dias*</th><th class="n">% das saídas</th></tr>
+      <tr><td>Ativos ao ar livre</td><td class="n">34%</td><td class="n">13%</td><td class="n">23%</td></tr>
+      <tr><td>Ativos em ambiente fechado</td><td class="n">28%</td><td class="n">11%</td><td class="n">17%</td></tr>
+      <tr><td>Novatos</td><td class="n">12%</td><td class="n">18%</td><td class="n">13%</td></tr>
+      <tr class="hl"><td>Esporádicos</td><td class="n">20%</td><td class="n">52%</td><td class="n">37%</td></tr>
+      <tr><td>Parados</td><td class="n">6%</td><td class="n">67%</td><td class="n">11%</td></tr>
+    </table>
+    <div class="caixa"><b>O sinal de alerta:</b> até 7 dias sem treinar, a saída fica abaixo da média; a partir de 8 dias, ela dobra (de 12% para 22% ou mais). E 56% de quem saiu no trimestre não tinha desligado a renovação quando ele começou: para eles, o uso é o único aviso.</div>
+    <p class="nota">* Entre quem podia sair: mensais e anuais com renovação na janela. O anual só sai na renovação; sem essa correção, ele pareceria reter mais do que retém.</p>
+  </div>
+  <div class="pe"><span>Grupo 2 · Vitaliza · Entrega parcial · Tecnologia</span><span>2 / 3</span></div>
+</div></section>
+
+<!-- 3 -->
+<section class="tela" id="s3"><div class="slide">
+  <div class="esq">
+    <div class="kick">3 · A decisão</div>
+    <div class="num">8<small> dias</small></div>
+    <h2>sem treinar é o gatilho para agir</h2>
+    <p>Começando pelos esporádicos, antes da renovação.</p>
+  </div>
+  <div class="dir">
+    <h3>O que a Vitaliza faria diferente com cada grupo</h3>
+    <table class="dec">
+      <tr><th>Segmento</th><th>Ação</th></tr>
+      <tr class="hl"><td>Esporádicos</td><td>Prioridade: contato a partir de 8 dias sem treino, começando por quem renova primeiro (o WhatsApp tem teto de 1.500 mensagens por mês)</td></tr>
+      <tr><td>Novatos</td><td>Boas-vindas e primeiro plano de treino</td></tr>
+      <tr><td>Parados</td><td>Testar com grupo de controle: o contato pode lembrar que pagam por algo que não usam</td></tr>
+      <tr><td>Ativos</td><td>Manter por canais baratos: desafios para quem treina ao ar livre, conteúdo novo para quem treina em casa</td></tr>
+    </table>
+    <div class="caixa"><b>Limites:</b> o agrupamento descreve grupos, não prevê quem vai sair (um ativo pode sair, um parado pode renovar), e os grupos se tocam nas bordas (silhueta de 0,29). O próximo passo é o modelo de risco individual e a leitura da campanha de agosto, para saber se o contato muda o desfecho.</div>
+  </div>
+  <div class="pe"><span>Grupo 2 · Vitaliza · Entrega parcial · Tecnologia</span><span>3 / 3</span></div>
+</div></section>
+
+<div class="ajuda">← → para navegar · Ctrl+P salva em PDF</div>
+<script>
+const telas=[...document.querySelectorAll('.tela')];
+function atual(){let m=0,d=Infinity;telas.forEach((t,i)=>{const v=Math.abs(t.getBoundingClientRect().top);if(v<d){d=v;m=i}});return m}
+document.addEventListener('keydown',e=>{
+  const proxima=['ArrowRight','ArrowDown','PageDown',' '].includes(e.key), anterior=['ArrowLeft','ArrowUp','PageUp'].includes(e.key);
+  if(!proxima&&!anterior)return;
+  e.preventDefault();
+  const i=Math.max(0,Math.min(telas.length-1,atual()+(proxima?1:-1)));
+  telas[i].scrollIntoView({behavior:'smooth',block:'center'});
+});
+</script>
+</body>
+</html>
