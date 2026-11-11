@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f7f6f2;--ink:#1d1d1f;--mute:#6b6b6b;--line:#e2dfd8;--red:#d6453d;--red-soft:#fbeceb;--card:#fff;--ok:#2f7d4f;--ok-soft:#e6f2ea;--div:#c9c3b7}
+:root{--bg:#f7f6f2;--ink:#1d1d1f;--mute:#6b6b6b;--line:#e2dfd8;--red:#d6453d;--red-soft:#fbeceb;--card:#fff;--ok:#2f7d4f;--ok-soft:#e6f2ea;--div:#c9c3b7;--blue:#2d5fa8;--blue-soft:#e9eff8}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Inter,system-ui,sans-serif}
@@ -67,15 +67,36 @@ nav li.todo a{color:#a8a39a}
 nav .tag{font-size:10.5px;background:#efece6;color:var(--mute);padding:1px 7px;border-radius:99px;margin-left:auto}
 nav .foot{margin-top:24px;font-size:12.5px;color:var(--mute);line-height:1.5}
 footer{padding:36px 0 0;font-size:13px;color:var(--mute)}
+/* trilhas */
+.parte{background:var(--red);color:#fff;border-radius:14px;padding:28px 30px;margin:44px 0 0;scroll-margin-top:24px}
+.parte.neg{background:var(--blue)}
+.parte .kicker{color:#fff;opacity:.85;margin-bottom:6px}
+.parte h2{color:#fff;margin-bottom:6px}
+.parte p{margin:0;opacity:.95}
+.neg-s .kicker{color:var(--blue)}
+.neg-s .todo-box{border-color:#c9d6ea;background:#f6f8fc}
+nav .t{display:block;text-decoration:none}
+nav .blk{margin-bottom:28px}
+nav .blk-h{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin:0 0 2px;color:var(--red)}
+nav .blk small{display:block;color:var(--mute);font-size:12.5px;margin-bottom:10px;line-height:1.4}
+nav .blk.t ol{border-left-color:var(--red)}
+nav .blk.n .blk-h{color:var(--blue)}
+nav .blk.n ol{border-left-color:var(--blue)}
+nav .blk.n li a:hover{color:var(--blue)}
+nav .blk.n li a.on{border-color:var(--blue);color:var(--blue)}
 @media (max-width:900px){
   .wrap{grid-template-columns:minmax(0,1fr);gap:0;padding:0 16px 40px}
   nav,main{min-width:0}
   nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0;margin:0 -16px 28px;padding-left:16px}
-  nav .t,nav .foot{display:none}
-  nav ol{display:flex;overflow-x:auto;border:0;gap:4px}
+  nav .t,nav .foot,nav .blk-h,nav .blk small{display:none}
+  nav{display:flex;overflow-x:auto;gap:4px}
+  nav .blk{display:contents}
+  nav ol{display:flex;border:0;gap:4px}
   nav li{border-bottom:0}
   nav li a{white-space:nowrap;border:0;padding:6px 10px;margin:0;border-radius:99px}
   nav li a.on{background:var(--red-soft)}
+  nav .blk.n li a.on{background:var(--blue-soft)}
+  .parte{padding:22px}
   nav .tag{display:none}
   h1{font-size:38px}h2{font-size:28px}
   .team{grid-template-columns:repeat(2,1fr)}
@@ -88,18 +109,33 @@ footer{padding:36px 0 0;font-size:13px;color:var(--mute)}
 <div class="wrap">
 
 <nav aria-label="Passo a passo">
-  <div class="t">O caminho</div>
-  <ol>
-    <li><a href="#grupo"><i>0</i>O grupo</a></li>
-    <li><a href="#pergunta"><i>1</i>A pergunta de negócio</a></li>
-    <li><a href="#definicoes"><i>2</i>Definições</a></li>
-    <li><a href="#arquivos"><i>3</i>Os arquivos</a></li>
-    <li><a href="#diagnostico"><i>4</i>Diagnóstico</a></li>
-    <li><a href="#limpeza"><i>5</i>Limpeza</a></li>
-    <li class="todo"><a href="#exploratoria"><i>6</i>Análise exploratória<span class="tag">a fazer</span></a></li>
-    <li class="todo"><a href="#segmentacao"><i>7</i>Segmentação<span class="tag">a fazer</span></a></li>
-    <li><a href="#decisoes"><i>8</i>Registro de decisões</a></li>
-  </ol>
+  <a href="#grupo" class="t">O grupo</a>
+  <div class="blk t">
+    <div class="blk-h">Parte 1 · Trilha de Tecnologia</div>
+    <small>EDA, código e segmentação</small>
+    <ol>
+      <li><a href="#pergunta"><i>1</i>A pergunta de negócio</a></li>
+      <li><a href="#definicoes"><i>2</i>Definições</a></li>
+      <li><a href="#arquivos"><i>3</i>Os arquivos</a></li>
+      <li><a href="#diagnostico"><i>4</i>Diagnóstico</a></li>
+      <li><a href="#limpeza"><i>5</i>Limpeza</a></li>
+      <li class="todo"><a href="#exploratoria"><i>6</i>Análise exploratória<span class="tag">a fazer</span></a></li>
+      <li class="todo"><a href="#segmentacao"><i>7</i>Segmentação<span class="tag">a fazer</span></a></li>
+      <li><a href="#decisoes"><i>8</i>Registro de decisões</a></li>
+      <li class="todo"><a href="#minideck"><i>9</i>Mini deck<span class="tag">a fazer</span></a></li>
+    </ol>
+  </div>
+  <div class="blk n">
+    <div class="blk-h">Parte 2 · Trilha de Negócios</div>
+    <small>Customer Segmentation Report</small>
+    <ol>
+      <li class="todo"><a href="#personas"><i>1</i>Segmentos e personas<span class="tag">a fazer</span></a></li>
+      <li class="todo"><a href="#hipoteses"><i>2</i>Hipóteses de churn<span class="tag">a fazer</span></a></li>
+      <li class="todo"><a href="#priorizacao"><i>3</i>Priorização<span class="tag">a fazer</span></a></li>
+      <li class="todo"><a href="#visualizacoes"><i>4</i>Visualizações<span class="tag">a fazer</span></a></li>
+      <li class="todo"><a href="#limitacoes"><i>5</i>Limitações<span class="tag">a fazer</span></a></li>
+    </ol>
+  </div>
   <div class="foot">Repositório <code>vitaliza-grupo-02</code><br>Data de corte: 30/09/2026</div>
 </nav>
 
@@ -109,7 +145,7 @@ footer{padding:36px 0 0;font-size:13px;color:var(--mute)}
 <section id="grupo">
   <div class="kicker">MBA em IA e Dados para Negócios · Módulo 2</div>
   <h1>Vitaliza: quem sai, por quê e em quem agir</h1>
-  <p class="lead">Entrega parcial de tecnologia do <b>Grupo 2</b>. Esta página resume o caminho analítico percorrido: da pergunta de negócio à base limpa e, em seguida, à análise exploratória e à segmentação dos assinantes.</p>
+  <p class="lead">Entrega parcial do <b>Grupo 2</b>, em duas partes: a <b>trilha de tecnologia</b>, com o caminho analítico da pergunta de negócio à segmentação, e a <b>trilha de negócios</b>, com o relatório de segmentação de clientes.</p>
   <div class="team">
     <div class="p"><div class="av">LM</div><b>Leonardo Molan</b></div>
     <div class="p"><div class="av">MA</div><b>Marcos Antonio</b></div>
@@ -124,6 +160,13 @@ footer{padding:36px 0 0;font-size:13px;color:var(--mute)}
   </div>
   <div class="why"><b>O que buscamos com esta entrega.</b> Mais do que resultados, ela expõe os critérios e as decisões do grupo em cada etapa, para receber orientação sobre a abordagem antes da entrega final (18/12).</div>
 </section>
+
+<!-- PARTE 1 -->
+<div class="parte" id="parte-tecnologia">
+  <div class="kicker">Parte 1</div>
+  <h2>Trilha de Tecnologia</h2>
+  <p>Análise exploratória de dados: carregar, limpar e visualizar a base, identificar padrões ligados ao churn e sustentar a segmentação.</p>
+</div>
 
 <!-- 1 -->
 <section id="pergunta">
@@ -276,8 +319,70 @@ footer{padding:36px 0 0;font-size:13px;color:var(--mute)}
     <tr><td><code>assinaturas</code></td><td>Manter <code>data_fim</code> em branco</td><td>Branco = assinatura ativa</td><td>Apagar as linhas (apagaria todos os ativos) ou preencher com a data do corte (criaria saídas falsas)</td><td class="n">14.753</td></tr>
     <tr><td><code>eventos</code></td><td>Marcar <code>plano</code> vazio para investigar</td><td>Recuperável pelo retrato, se a análise precisar</td><td>Preencher já pelo retrato: ele é de 01/10 e o plano pode ter mudado desde o evento</td><td class="n">6.734</td></tr>
   </table></div>
+</section>
+
+<!-- 9 -->
+<section id="minideck">
+  <div class="kicker">Etapa 9 · Comunicação <span class="pill next">a fazer</span></div>
+  <h2>Mini deck</h2>
+  <div class="todo-box"><b>O que esta etapa vai mostrar</b><ul>
+    <li>A história analítica em poucas telas: da pergunta à segmentação.</li>
+    <li>Os gráficos da análise exploratória que entram no relatório de negócios.</li>
+  </ul></div>
+</section>
+
+<!-- PARTE 2 -->
+<div class="parte neg" id="parte-negocios">
+  <div class="kicker">Parte 2</div>
+  <h2>Trilha de Negócios</h2>
+  <p>Customer Segmentation Report: relatório executivo que descreve os segmentos e o que a Vitaliza faria com cada um.</p>
+</div>
+
+<section id="personas" class="neg-s">
+  <div class="kicker">Etapa 1 <span class="pill next">a fazer</span></div>
+  <h2>Segmentos e personas</h2>
+  <div class="todo-box"><b>O que esta etapa vai mostrar</b><ul>
+    <li>Três a quatro segmentos, cada um descrito num cartão de persona.</li>
+    <li>Tamanho, perfil e saída histórica de cada segmento, vindos da trilha de tecnologia.</li>
+  </ul></div>
+</section>
+
+<section id="hipoteses" class="neg-s">
+  <div class="kicker">Etapa 2 <span class="pill next">a fazer</span></div>
+  <h2>Hipóteses de churn por segmento</h2>
+  <div class="todo-box"><b>O que esta etapa vai mostrar</b><ul>
+    <li>Os possíveis motivos de saída de cada segmento, tratados como hipóteses a testar.</li>
+    <li>A evidência da análise exploratória que sustenta cada hipótese.</li>
+  </ul></div>
+</section>
+
+<section id="priorizacao" class="neg-s">
+  <div class="kicker">Etapa 3 <span class="pill next">a fazer</span></div>
+  <h2>Priorização preliminar</h2>
+  <div class="todo-box"><b>O que esta etapa vai mostrar</b><ul>
+    <li>Quais segmentos pedem ação imediata e quais ficam em monitoramento.</li>
+    <li>O critério usado para priorizar.</li>
+  </ul></div>
+</section>
+
+<section id="visualizacoes" class="neg-s">
+  <div class="kicker">Etapa 4 <span class="pill next">a fazer</span></div>
+  <h2>Visualizações</h2>
+  <div class="todo-box"><b>O que esta etapa vai mostrar</b><ul>
+    <li>Os gráficos da análise exploratória que sustentam a leitura de negócio de cada segmento.</li>
+  </ul></div>
+</section>
+
+<section id="limitacoes" class="neg-s">
+  <div class="kicker">Etapa 5 <span class="pill next">a fazer</span></div>
+  <h2>Limitações da análise</h2>
+  <div class="todo-box"><b>O que esta etapa vai mostrar</b><ul>
+    <li>O que os dados não permitem afirmar: cruzamento aponta suspeitos, não prova causa.</li>
+    <li>Vieses conhecidos da base, como a pesquisa de saída, respondida por uma minoria que se escolheu sozinha.</li>
+  </ul></div>
   <footer>Grupo 2 · MBA em IA e Dados para Negócios · Inteli · Módulo 2 · 2026</footer>
 </section>
+
 
 </main>
 </div>
