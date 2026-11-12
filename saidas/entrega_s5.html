@@ -175,6 +175,7 @@ th{background:#f5f3ed}
   .persona .base{padding:0 16px 14px}.persona .frase{margin:0 16px 14px}
 }
 @media print{.persona{break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+[data-nav]{scroll-margin-top:24px}
 </style>
 </head>
 <body>
@@ -222,9 +223,29 @@ th{background:#f5f3ed}
     <div class="blk-h">Parte 2 · Trilha de Negócios</div>
     <small>Customer Segmentation Report</small>
     <ol>
-      <li><a href="#personas"><i>1</i>Segmentos e personas</a></li>
-      <li><a href="#hipoteses"><i>2</i>Hipóteses de churn</a></li>
-      <li><a href="#priorizacao"><i>3</i>Priorização</a></li>
+      <li class="has-sub"><a href="#personas"><i>1</i>Segmentos e personas</a>
+        <ol class="sub">
+          <li><a href="#pers-validacao"><i>1.1</i>Como validamos</a></li>
+          <li><a href="#pers-esperado"><i>1.2</i>O que esperávamos</a></li>
+          <li><a href="#pers-esporadico"><i>1.3</i>Esporádico com renovação à vista</a></li>
+          <li><a href="#pers-parado"><i>1.4</i>Pagante parado</a></li>
+          <li><a href="#pers-novato"><i>1.5</i>Novato recém-chegado</a></li>
+          <li><a href="#pers-ativo"><i>1.6</i>Ativo regular</a></li>
+        </ol>
+      </li>
+      <li class="has-sub"><a href="#hipoteses"><i>2</i>Hipóteses de churn</a>
+        <ol class="sub">
+          <li><a href="#hip-lista"><i>2.1</i>As quatro hipóteses</a></li>
+          <li><a href="#hip-campanha"><i>2.2</i>A campanha de agosto</a></li>
+        </ol>
+      </li>
+      <li class="has-sub"><a href="#priorizacao"><i>3</i>Priorização</a>
+        <ol class="sub">
+          <li><a href="#pri-matriz"><i>3.1</i>Valor × risco</a></li>
+          <li><a href="#pri-descartadas"><i>3.2</i>Alternativas descartadas</a></li>
+          <li><a href="#pri-orcamento"><i>3.3</i>Orçamento do mês</a></li>
+        </ol>
+      </li>
       <li><a href="#visualizacoes"><i>4</i>Visualizações</a></li>
       <li><a href="#limitacoes"><i>5</i>Limitações</a></li>
     </ol>
@@ -638,7 +659,7 @@ th{background:#f5f3ed}
   <div class="kicker">Etapa 1 · Negócios · Personas</div>
   <h2>De cinco segmentos a quatro personas</h2>
   <p class="lead">A segmentação da trilha de tecnologia dividiu a base em cinco grupos (ativos ao ar livre, ativos em ambiente fechado, novatos, esporádicos e parados). O relatório pede de três a quatro personas, então procuramos os grupos que pediam a mesma coisa. Os ativos que treinam ao ar livre e os que treinam em ambiente fechado saem pouco, valem muito e respondem ao mesmo tipo de ação. Juntamos os dois numa persona só, o Ativo regular, e mantivemos os outros três como estavam.</p>
-  <h3>Como validamos cada persona</h3>
+  <h3 id="pers-validacao" data-nav>Como validamos cada persona</h3>
   <p>Seguimos o roteiro da Aula 5. Para cada grupo, contamos quantos saíram nos 60 dias depois de 31/07 e comparamos com a saída de todos os outros assinantes, os que não estão no grupo. Só entra na conta quem <b>podia sair</b> nesse período: o mensal e o anual cuja renovação caía na janela. Quem está no meio de um contrato anual não tem como sair, e contar essas pessoas faria qualquer grupo parecer mais seguro do que é. Sobram 7.089 dos 14.032 pagantes, e 20,6% deles saíram.</p>
   <div class="tbl"><table>
     <tr><th>Persona</th><th style="text-align:right">Na base</th><th style="text-align:right">Podiam sair</th><th style="text-align:right">Saída do grupo</th><th style="text-align:right">Saída dos demais</th><th style="text-align:right">Diferença</th><th style="text-align:right">Cobertura</th></tr>
@@ -648,14 +669,14 @@ th{background:#f5f3ed}
     <tr><td>Ativo regular</td><td class="n">8.675 (62%)</td><td class="n">4.789</td><td class="n">12,1%</td><td class="n">38,3%</td><td class="n">−26,2 pp</td><td class="n">39,6%</td></tr>
   </table></div>
   <p style="font-size:14px;color:var(--mute);margin-top:8px">Diferença, em pontos percentuais (pp): quanto a saída do grupo fica acima (+) ou abaixo (−) da saída dos demais assinantes. Demais assinantes: todos os que podiam sair e não estão no grupo. Cobertura: de cada 100 assinantes que saíram, quantos eram desse grupo. Código em <code>notebooks/04_personas.ipynb</code>; processo em <code>docs/04_Personas e Priorizacao.md</code>.</p>
-  <div class="grid2">
+  <div class="grid2" id="pers-esperado" data-nav>
     <div class="card"><div class="lbl bad">O que esperávamos</div><p>Que o novato fosse o grupo de maior risco, como o "novato que não se conectou" do exemplo da aula.</p></div>
     <div class="card"><div class="lbl good">O que a base mostrou</div><p>O novato da Vitaliza sai <b>menos</b> que a média. Testamos também o novato que está há 8 dias ou mais sem treinar: ele sai um pouco mais que os demais assinantes (27% contra 20,5%), mas é um grupo pequeno, que responde por só 2% de todas as saídas. Não justifica uma persona própria.</p></div>
   </div>
   <h3>Os cartões</h3>
   <p>Cada cartão tem duas partes, como pede a Aula 4. A da esquerda conta a história para o time que vai agir; a da direita traz a evidência e a decisão para o conselho. Todos os números saem da base.</p>
   
-  <article class="persona">
+  <article class="persona" id="pers-esporadico" data-nav>
     <div class="nums"><div><b>1.037</b><span>assinantes que podiam sair</span></div><div><b>51,8%</b><span>saem, contra 15,2% dos demais assinantes</span></div><div><b>+36,5 pp</b><span>de diferença</span></div><div><b>36,8%</b><span>de todas as saídas</span></div></div>
     <div class="cab">
       <div class="zona">Persona 1 · <b>Priorizar</b> · prioridade imediata</div>
@@ -680,7 +701,7 @@ th{background:#f5f3ed}
     <div class="frase"><span>Decisão:</span> Esporádico com renovação à vista · Priorizar · ligação do CS entre desligar a renovação e expirar</div>
   </article>
   
-  <article class="persona">
+  <article class="persona" id="pers-parado" data-nav>
     <div class="nums"><div><b>236</b><span>assinantes que podiam sair</span></div><div><b>66,9%</b><span>saem, contra 19,0% dos demais assinantes</span></div><div><b>+48,0 pp</b><span>de diferença</span></div><div><b>10,8%</b><span>de todas as saídas</span></div></div>
     <div class="cab">
       <div class="zona">Persona 2 · <b>Não acordar</b> · prioridade monitoramento</div>
@@ -705,7 +726,7 @@ th{background:#f5f3ed}
     <div class="frase"><span>Decisão:</span> Pagante parado · Não acordar · fora das campanhas até um teste pequeno com controle</div>
   </article>
   
-  <article class="persona">
+  <article class="persona" id="pers-novato" data-nav>
     <div class="nums"><div><b>1.027</b><span>assinantes que podiam sair</span></div><div><b>18,1%</b><span>saem, contra 21,0% dos demais assinantes</span></div><div><b>−2,9 pp</b><span>de diferença</span></div><div><b>12,7%</b><span>de todas as saídas</span></div></div>
     <div class="cab">
       <div class="zona">Persona 3 · <b>Manter</b> · prioridade monitoramento</div>
@@ -730,7 +751,7 @@ th{background:#f5f3ed}
     <div class="frase"><span>Decisão:</span> Novato recém-chegado · Manter · push de desafio na primeira semana</div>
   </article>
   
-  <article class="persona">
+  <article class="persona" id="pers-ativo" data-nav>
     <div class="nums"><div><b>4.789</b><span>assinantes que podiam sair</span></div><div><b>12,1%</b><span>saem, contra 38,3% dos demais assinantes</span></div><div><b>−26,2 pp</b><span>de diferença</span></div><div><b>39,6%</b><span>de todas as saídas</span></div></div>
     <div class="cab">
       <div class="zona">Persona 4 · <b>Proteger</b> · prioridade monitoramento</div>
@@ -759,7 +780,7 @@ th{background:#f5f3ed}
 <section id="hipoteses" class="neg-s">
   <div class="kicker">Etapa 2 · Negócios · Hipóteses</div>
   <h2>Hipóteses de churn por persona</h2>
-  <p class="lead">Cada hipótese segue o formato da Aula 2: afirmação causal, métrica e o resultado que a derruba, definido antes de olhar os dados.</p>
+  <p class="lead" id="hip-lista" data-nav>Cada hipótese segue o formato da Aula 2: afirmação causal, métrica e o resultado que a derruba, definido antes de olhar os dados.</p>
   <div class="tbl"><table>
     <tr><th>Persona</th><th>Hipótese</th><th>Métrica</th><th>Cai se…</th><th>Primeiro teste</th></tr>
     <tr><td>Esporádico com renovação à vista</td><td>A queda de uso antes da renovação leva o assinante a não renovar</td><td>Saída na janela, por dias sem treino em 31/07</td><td>Quem está há 8+ dias sem treinar sair tanto quanto quem treinou na última semana</td><td><b>Sobreviveu:</b> 63% contra 25%</td></tr>
@@ -767,7 +788,7 @@ th{background:#f5f3ed}
     <tr><td>Novato recém-chegado</td><td>Sem hábito no primeiro mês, o novato sai; um desafio cria o hábito</td><td>Saída do novato com desafio contra o controle</td><td>O desafio não reduzir a saída</td><td><b>Sobreviveu:</b> o desafio reduziu a saída em 7,4 pp</td></tr>
     <tr><td>Ativo regular</td><td>O ativo mensal que sai sai por preço, não por falta de uso</td><td>Efeito do cupom no ativo mensal contra o anual</td><td>O cupom reduzir a saída igualmente nos dois planos</td><td><b>Sobreviveu:</b> o cupom reduziu 5,6 pp no mensal e nada no anual</td></tr>
   </table></div>
-  <h3>De onde vem o primeiro teste: a campanha de agosto</h3>
+  <h3 id="hip-campanha" data-nav>De onde vem o primeiro teste: a campanha de agosto</h3>
   <p>Em 10/08/2026, a Vitaliza sorteou os pagantes em quatro grupos: desafio, cupom e conteúdo, por push e e-mail, e um controle que não recebeu nada. É o único experimento da base, e a empresa nunca olhou o resultado. Como os grupos foram sorteados, eles são parecidos entre si (conferimos: cada segmento aparece na mesma proporção nos quatro). Então, se um grupo saiu menos que o controle, a diferença vem da mensagem.</p>
   <div class="tbl"><table>
     <tr><th>Segmento</th><th style="text-align:right">Desafio</th><th style="text-align:right">Cupom</th><th style="text-align:right">Conteúdo</th></tr>
@@ -784,7 +805,7 @@ th{background:#f5f3ed}
 <section id="priorizacao" class="neg-s">
   <div class="kicker">Etapa 3 · Negócios · Priorização</div>
   <h2>Uma persona para agir já, três para acompanhar</h2>
-  <p class="lead">Para decidir onde agir primeiro, cruzamos risco e valor. O risco é a saída de cada grupo, medida na etapa 1. Para o valor, o roteiro pede que o grupo declare o critério, e escolhemos o <b>potencial</b>: quanto a Vitaliza ainda pode ganhar se a pessoa ficar. Na conta entra o que ela paga em 12 meses, já sem a taxa da loja e sem o custo de R$ 4,20 por mês para atendê-la, mais os R$ 118 que custaria trazer alguém no lugar dela.</p>
+  <p class="lead" id="pri-matriz" data-nav>Para decidir onde agir primeiro, cruzamos risco e valor. O risco é a saída de cada grupo, medida na etapa 1. Para o valor, o roteiro pede que o grupo declare o critério, e escolhemos o <b>potencial</b>: quanto a Vitaliza ainda pode ganhar se a pessoa ficar. Na conta entra o que ela paga em 12 meses, já sem a taxa da loja e sem o custo de R$ 4,20 por mês para atendê-la, mais os R$ 118 que custaria trazer alguém no lugar dela.</p>
   <div class="tbl"><table>
     <tr><th>Persona</th><th>Valor</th><th>Risco</th><th>Lugar na matriz</th><th>Prioridade</th><th>Por quê</th></tr>
     <tr class="hl"><td><b>Esporádico com renovação à vista</b></td><td>alto</td><td>alto</td><td><b>Priorizar</b></td><td><b>imediata</b></td><td>Maior valor perdido em 60 dias (R$ 202 mil) e janela curta: a renovação</td></tr>
@@ -792,11 +813,11 @@ th{background:#f5f3ed}
     <tr><td>Novato recém-chegado</td><td>médio</td><td>baixo</td><td>Manter</td><td>monitoramento</td><td>Sai menos que a média, e o desafio, que é grátis, funciona</td></tr>
     <tr><td>Ativo regular</td><td>alto</td><td>baixo</td><td>Proteger</td><td>monitoramento</td><td>Maior parte da receita; o cupom funciona, mas não se paga</td></tr>
   </table></div>
-  <div class="grid2">
+  <div class="grid2" id="pri-descartadas" data-nav>
     <div class="card"><div class="lbl bad">Alternativa descartada</div><p>Pôr o novato em "A validar", como o professor fez com o novato de um mês. A campanha deu a evidência que faltava: o desafio reduz a saída dele em 7,4 pp.</p></div>
     <div class="card"><div class="lbl bad">Alternativa descartada</div><p>Cupom para os ativos, que reduz a saída deles. Reter uma pessoa custaria R$ 502 a R$ 726, mais do que ela vale. O desconto iria para quem ficaria de qualquer jeito.</p></div>
   </div>
-  <h3>O orçamento do mês</h3>
+  <h3 id="pri-orcamento" data-nav>O orçamento do mês</h3>
   <p>Os custos e tetos são os do enunciado: R$ 40 mil por mês, contando os descontos, 1.500 WhatsApps a R$ 0,40 e 300 atendimentos de CS a R$ 18. Para o desconto oferecido pelo CS, contamos o pior caso: todos os atendidos aceitam.</p>
   <div class="tbl"><table>
     <tr><th>Persona</th><th>Ação</th><th style="text-align:right">Contatos por mês</th><th style="text-align:right">Custo no mês</th></tr>
@@ -864,7 +885,7 @@ const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(!e.isIntersecting)retu
     const pai=a.closest('li.has-sub');if(pai)pai.querySelector(':scope > a').classList.add('on');
     mostrarNoMenu(a)});
 })},{rootMargin:'-30% 0px -65% 0px'});
-document.querySelectorAll('main section').forEach(s=>obs.observe(s));
+document.querySelectorAll('main section, main [data-nav]').forEach(s=>{if(s.tagName==='SECTION'&&s.querySelector('[data-nav]'))return;obs.observe(s)});
 </script>
 </body>
 </html>
